@@ -1,0 +1,66 @@
+## Data Visualization - Google Maps - Restaurants Populartimes
+
+### Background
+
+The restaurant populartimes will display how busy all the restaurants in Manhattan are during the different hours in the day / days of the week.
+
+### Functionality & MVP
+
+Users should be able to see:
+
+- [ ] Location of restaurants in Manhattan area which have popular times info
+- [ ] See the time and day of the week of the current visual that is being displayed
+- [ ] Allow for time to playout visually within a day with changing data.
+- [ ] Toggle between different days of the week to see how populartimes change.
+
+In addition, this project will include:
+- [ ] A production README
+
+### Wireframes
+
+This data visualization will consist of a single page with checkbox or dropdown to select the day of the week on the side to toggle the different days of the week and the start and pause animation button. The other component will be a google maps visual showing the map with populated datapoints.
+
+![wireframe - populartimes - google maps - manhattan](https://user-images.githubusercontent.com/24593321/32551199-bb6feae8-c45d-11e7-9ad6-38be649ce7d2.jpg)
+
+### Architecture and Technologies
+
+This project will be implemented with the following technologies:
+
+- `JavaScript` for handling frontend interactive visuals,
+- `Google Maps API` for the map,
+- `Populartimes API` for data points for Google Maps.
+
+
+### Implementation Timeline
+
+
+**Day 1**: Gather relevant data information from API. Populate Google Maps API with restaurant location datapoint
+
+Goals for the day:
+
+- Get map up and running
+- Populate map with restaurant markers from populartimes API
+- Use google fusion table
+
+
+**Day 2**: Parse through populartimes API and sort/apply data to visual intensity of datapoint.
+
+Goals for the day:
+
+- Organize and sort data to varying intensities from populartimes API.
+- Get hotmap intensities to change with respect to how busy a location is.
+
+
+**Day 3**: Style google maps
+
+Goals for the day:
+- have map populated with information, some user generated changes
+
+
+**Day 4**: Install the controls for the user to interact with the front end, changing the day of the week, Style the webpage accordingly
+
+
+
+### Bonus features
+
+- [ ] Add populartime info for other place types (i.e. bars, entertainment, and etc.)
