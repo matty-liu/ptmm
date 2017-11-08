@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>My Map</title>
+
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+
+    <style>
+      #map {
+        height: 100%;
+      }
+
+      html, body {
+        height: 100%;
+        width: 50vw;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <div id="map"></div>
+
+    <script>
+
+      let map;
+      function initMap() {
+
+        const appAcademyLatLng = { lat:40.751259, lng: -73.984030 };
+
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: { lat:40.751259, lng: -73.984030 },
+          zoom: 13,
+        });
+
+        let marker = new google.maps.Marker({
+          position: appAcademyLatLng,
+          map: map,
+          title: 'App Academy',
+        });
+
+      }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTG3mmWTstTxiAfeTpvOc_FdZlRhhtSsc&callback=initMap"
+    async defer></script>
+
+    <script src="places-manhat-test.js" type='text/javascript'>
+      console.log(googlePlaceTest)
+    </script>
+
+  </body>
+</html>
