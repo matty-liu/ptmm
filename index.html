@@ -10,7 +10,8 @@
 
     <style>
     #map {
-        height: 100%;
+        height: 80%;
+        width: 80%;
       }
 
       html, body {
@@ -89,12 +90,11 @@
 
         let contentString =
         `<div>`+
-          `<div>Name${place.name}<div>`+
-          `<div>Address${place.address}<div>`+
-          `<div>Phone Number${place.international_phone_number}<div>`+
+          `<div>Name: ${place.name}<div>`+
+          `<div>Address: ${place.address}<div>`+
+          `<div>Phone Number: ${place.international_phone_number}<div>`+
           `<div>Rating:${place.rating}<div>`+
-          `<div>Number of Ratings${place.rating_n}<div>`+
-          `<div>Name${place.name}<div>`+
+          `<div>Number of Ratings: ${place.rating_n}<div>`+
         `</div>`;
 
         const infowindow = new google.maps.InfoWindow({
@@ -126,7 +126,6 @@
       }
 
       circles.forEach((circle, idx) => {
-
         let radius = circle.populartimes[day].data[hours];
         radius = radius * 0.65;
         circle.setRadius(radius)
