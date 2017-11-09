@@ -14,8 +14,8 @@
       }
 
       html, body {
-        height: 700px;
-        width: 500px;
+        height: 100vh;
+        width: 100vw;
         margin: 0;
         padding: 0;
       }
@@ -24,28 +24,50 @@
   </head>
 
   <body>
+
+    <!-- Night Time Style of Map -->
+    <script src="map-styles-night.js"></script>
+    <!-- Remove POI Styling -->
+    <script src="map-hide-poi.js"></script>
+
     <div id="map"></div>
     <div id="hour">Hour</div>
-    <script src="places-manhat-test.js"></script>
+
+    <!-- Map Data from Google Places -->
+    <script src="places-manhat-data-sample.js"></script>
+    <script src="places-manhat-data-sample2.js"></script>
+    <script src="places-manhat-data-sample3.js"></script>
+    <script src="places-manhat-data-sample4.js"></script>
+    <script src="places-manhat-data-sample5.js"></script>
+    <script src="places-manhat-data-sample6.js"></script>
 
     <script>
 
-    const googlePlacesTest = window.googlePlacesTest
-    let map;
-    let circles = []
+    let googlePlaces = googlePlacesData1.concat(googlePlacesData2)
+    googlePlaces = googlePlaces.concat(googlePlacesData3)
+    googlePlaces = googlePlaces.concat(googlePlacesData4)
+    googlePlaces = googlePlaces.concat(googlePlacesData5)
+    googlePlaces = googlePlaces.concat(googlePlacesData6)
+    console.log(googlePlaces)
 
-    console.log(googlePlacesTest)
+    // let uniquePlaces = []
+
+    let map;
+    let circles = [];
 
     function initMap() {
 
       const appAcademyLatLng = { lat:40.751259, lng: -73.984030 };
 
       map = new google.maps.Map(document.getElementById('map'), {
+        disableDefaultUI: true,
         center: { lat:40.751259, lng: -73.984030 },
         zoom: 13,
+        styles: nightStyles,
+        zoomControl: true,
       });
 
-      googlePlacesTest.forEach((place) => {
+      googlePlaces.forEach((place) => {
         // new google.maps.Marker({
         //   position: place.coordinates,
         //   map: map,
@@ -60,19 +82,37 @@
           fillOpacity: 0.35,
           map: map,
           center: place.coordinates,
-          radius: 30,
+          radius: 10,
           populartimes: place.populartimes,
+          position: place.coordinates,
         })
+
+        let contentString =
+        `<div>`+
+          `<div>Name${place.name}<div>`+
+          `<div>Address${place.address}<div>`+
+          `<div>Phone Number${place.international_phone_number}<div>`+
+          `<div>Rating:${place.rating}<div>`+
+          `<div>Number of Ratings${place.rating_n}<div>`+
+          `<div>Name${place.name}<div>`+
+        `</div>`;
+
+        const infowindow = new google.maps.InfoWindow({
+          content: contentString
+        })
+
+        circle.addListener('click', () => {
+          infowindow.open(map,circle);
+        })
+
         circles.push(circle)
       })
 
-      let marker = new google.maps.Marker({
-        position: appAcademyLatLng,
-        map: map,
-        title: 'App Academy',
-      });
-
-      console.log("rendering new map")
+      // let marker = new google.maps.Marker({
+      //   position: appAcademyLatLng,
+      //   map: map,
+      //   title: 'App Academy',
+      // });
 
     }
 
@@ -98,7 +138,7 @@
 
     </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTG3mmWTstTxiAfeTpvOc_FdZlRhhtSsc&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASUnStAUyUBSLjckIAwrFwrg2e4mTnmGs&callback=initMap"
     async defer></script>
 
   </body>
