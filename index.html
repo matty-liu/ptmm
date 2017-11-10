@@ -10,8 +10,8 @@
 
     <style>
       #map {
-          height: 90%;
-          width: 90%;
+          height: 80%;
+          width: 80%;
         }
       html, body {
         height: 100vh;
@@ -31,30 +31,38 @@
     <div id="map"></div>
 
     <div id="day">
-      <input type="radio" id="monday" name="day" value="0" onclick="handleClick(this)" checked="checked">
+      <input type="radio" id="monday" name="day" value="0" onclick="handleDay(this)" checked="checked">
       <label for="monday">Monday</label>
-      <input type="radio" id="tuesday" name="day" value="1" onclick="handleClick(this)">
+      <input type="radio" id="tuesday" name="day" value="1" onclick="handleDay(this)">
       <label for="tuesday">Tuesday</label>
-      <input type="radio" id="wednesday" name="day" value="2" onclick="handleClick(this)">
+      <input type="radio" id="wednesday" name="day" value="2" onclick="handleDay(this)">
       <label for="wednesday">Wednesday</label>
-      <input type="radio" id="Thursday" name="day" value="3" onclick="handleClick(this)">
+      <input type="radio" id="Thursday" name="day" value="3" onclick="handleDay(this)">
       <label for="Thursday">Thursday</label>
-      <input type="radio" id="friday" name="day" value="4" onclick="handleClick(this)">
+      <input type="radio" id="friday" name="day" value="4" onclick="handleDay(this)">
       <label for="friday">Friday</label>
-      <input type="radio" id="saturday" name="day" value="5" onclick="handleClick(this)">
+      <input type="radio" id="saturday" name="day" value="5" onclick="handleDay(this)">
       <label for="saturday">Saturday</label>
-      <input type="radio" id="sunday" name="day" value="6" onclick="handleClick(this)">
+      <input type="radio" id="sunday" name="day" value="6" onclick="handleDay(this)">
       <label for="sunday">Sunday</label>
     </div>
 
-    <div id="slidecontainer">
-      <input type="range" min="0" max="23" value="0" class="slider" id="sliderTime" onchange="updateCircle(this)">
+    <div id="hourSliderContainer">
+      <input type="range" min="0" max="23" value="0" class="slider" id="hourSlider" onchange="updateCircle(this)">
       <button type="button" name="button" onclick="handlePlay()">play</button>
       <button type="button" name="button" onclick="handlePause()">pause</button>
     </div>
 
     <div>
       Hour: <span id="hour">0</span>
+    </div>
+
+    <div id="resturantDensitySliderContainer">
+      <input type="range" min="0" max="100" value="0" class="slider" id="resturantDensitySlider" onchange="updateCircle(this)">
+    </div>
+
+    <div>
+      Restaurant Density: <span id="restDen"></span>
     </div>
 
     <!-- Map Data from Google Places -->
@@ -64,16 +72,18 @@
     <script src="data/places-manhat-data-sample4.js"></script>
     <script src="data/places-manhat-data-sample5.js"></script>
     <script src="data/places-manhat-data-sample6.js"></script>
-
+    <!-- Data bounded to a googlePlaces variable -->
     <script>
-
     let googlePlaces = googlePlacesData1.concat(googlePlacesData2)
     googlePlaces = googlePlaces.concat(googlePlacesData3)
     googlePlaces = googlePlaces.concat(googlePlacesData4)
     googlePlaces = googlePlaces.concat(googlePlacesData5)
     googlePlaces = googlePlaces.concat(googlePlacesData6)
-    console.log(googlePlaces)
+    </script>
 
+    <!-- Map and data point generation -->
+    <script>
+    console.log(googlePlaces)
     // let uniquePlaces = []
 
     let map;
@@ -92,11 +102,6 @@
       });
 
       googlePlaces.forEach((place) => {
-        // new google.maps.Marker({
-        //   position: place.coordinates,
-        //   map: map,
-        //   title: place.name
-        // })
 
         const circle = new google.maps.Circle({
           strokeColor: '#FF0000',
@@ -106,7 +111,7 @@
           fillOpacity: 0.35,
           map: map,
           center: place.coordinates,
-          radius: 10,
+          radius: 1,
           populartimes: place.populartimes,
           position: place.coordinates,
         })
@@ -138,20 +143,27 @@
       // });
 
     }
+    </script>
+
+    <!-- data controls/filters -->
+    <script>
 
     let hour = 0;
     let day = 0;
+    let restDen = 0;
 
-    let slider = document.getElementById("sliderTime");
+    let hourSlider = document.getElementById("hourSlider");
     let hourHTML = document.getElementById("hour");
-    hourHTML.innerHTML = slider.value; // Display the default slider value
+    hourHTML.innerHTML = hourSlider.value; // Display the default slider value
     // Update the current slider value (each time you drag the slider handle)
-    slider.oninput = function() {
+
+    hourSlider.oninput = function() {
+      // this refers to the hour sider in here
       hourHTML.innerHTML = this.value;
-      hour = slider.value;
+      hour = paraseInt(this.value);
     }
 
-    function handleClick(day) {
+    function handleDay(day) {
       day = day.value;
     }
 
@@ -166,6 +178,71 @@
       clearInterval(setIntervalValid)
     }
 
+    let resturantDensitySlider = document.getElementById("resturantDensitySlider");
+    let restDenHTML = document.getElementById("restDen");
+
+    restDenHTML.innerHTML = resturantDensitySlider.value; // Display the default slider value
+    // Update the current slider value (each time you drag the slider handle)
+
+    resturantDensitySlider.oninput = function() {
+
+      googlePlaces.forEach((place) => {
+
+        const circle = new google.maps.Circle({
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35,
+          map: map,
+          center: place.coordinates,
+          radius: 10,
+          populartimes: place.populartimes,
+          position: place.coordinates,
+        })
+
+        let contentString =
+        `<div>`+
+          `<div>Name: ${place.name}<div>`+
+          `<div>Address: ${place.address}<div>`+
+          `<div>Phone Number: ${place.international_phone_number}<div>`+
+          `<div>Rating:${place.rating}<div>`+
+          `<div>Number of Ratings: ${place.rating_n}<div>`+
+        `</div>`;
+
+        const infowindow = new google.maps.InfoWindow({
+          content: contentString
+        })
+
+        circle.addListener('click', () => {
+          infowindow.open(map,circle);
+        })
+
+      })
+
+      // this refers to the restaurant density sider in here
+      restDenHTML.innerHTML = this.value;
+      restDen = parseInt(this.value);
+
+      circles.forEach((circle, idx) => {
+
+        let chance = restDen;
+        let randNum = Math.random()*100;
+
+        if (randNum <= chance) {
+          let radius = circle.populartimes[day].data[hour];
+          radius = radius * 0.65;
+          circle.setRadius(radius)
+        } else {
+          circle.setMap(null)
+        }
+      })
+
+      console.log(circles.length)
+
+    }
+
+
     function updateCircle() {
       console.log("rendering")
       if (hour === 23) {
@@ -173,14 +250,19 @@
       }
 
       circles.forEach((circle, idx) => {
+
         let radius = circle.populartimes[day].data[hour];
         radius = radius * 0.65;
         circle.setRadius(radius)
+
       })
-      slider.value = hour;
+
+      hourSlider.value = hour;
       hourHTML.innerHTML = hour;
       hour += 1;
     }
+
+
 
     </script>
 
