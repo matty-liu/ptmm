@@ -9,11 +9,10 @@
     <meta charset="utf-8">
 
     <style>
-    #map {
-        height: 80%;
-        width: 80%;
-      }
-
+      #map {
+          height: 90%;
+          width: 90%;
+        }
       html, body {
         height: 100vh;
         width: 100vw;
@@ -27,20 +26,44 @@
   <body>
 
     <!-- Night Time Style of Map -->
-    <script src="map-styles-night.js"></script>
-    <!-- Remove POI Styling -->
-    <script src="map-hide-poi.js"></script>
+    <script src="styles/map-styles-night.js"></script>
 
     <div id="map"></div>
-    <div id="hour">Hour</div>
+
+    <div id="day">
+      <input type="radio" id="monday" name="day" value="0" onclick="handleClick(this)" checked="checked">
+      <label for="monday">Monday</label>
+      <input type="radio" id="tuesday" name="day" value="1" onclick="handleClick(this)">
+      <label for="tuesday">Tuesday</label>
+      <input type="radio" id="wednesday" name="day" value="2" onclick="handleClick(this)">
+      <label for="wednesday">Wednesday</label>
+      <input type="radio" id="Thursday" name="day" value="3" onclick="handleClick(this)">
+      <label for="Thursday">Thursday</label>
+      <input type="radio" id="friday" name="day" value="4" onclick="handleClick(this)">
+      <label for="friday">Friday</label>
+      <input type="radio" id="saturday" name="day" value="5" onclick="handleClick(this)">
+      <label for="saturday">Saturday</label>
+      <input type="radio" id="sunday" name="day" value="6" onclick="handleClick(this)">
+      <label for="sunday">Sunday</label>
+    </div>
+
+    <div id="slidecontainer">
+      <input type="range" min="0" max="23" value="0" class="slider" id="sliderTime" onchange="updateCircle(this)">
+      <button type="button" name="button" onclick="handlePlay()">play</button>
+      <button type="button" name="button" onclick="handlePause()">pause</button>
+    </div>
+
+    <div>
+      Hour: <span id="hour">0</span>
+    </div>
 
     <!-- Map Data from Google Places -->
-    <script src="places-manhat-data-sample.js"></script>
-    <script src="places-manhat-data-sample2.js"></script>
-    <script src="places-manhat-data-sample3.js"></script>
-    <script src="places-manhat-data-sample4.js"></script>
-    <script src="places-manhat-data-sample5.js"></script>
-    <script src="places-manhat-data-sample6.js"></script>
+    <script src="data/places-manhat-data-sample.js"></script>
+    <script src="data/places-manhat-data-sample2.js"></script>
+    <script src="data/places-manhat-data-sample3.js"></script>
+    <script src="data/places-manhat-data-sample4.js"></script>
+    <script src="data/places-manhat-data-sample5.js"></script>
+    <script src="data/places-manhat-data-sample6.js"></script>
 
     <script>
 
@@ -116,24 +139,48 @@
 
     }
 
-    let hours = 0;
+    let hour = 0;
     let day = 0;
+
+    let slider = document.getElementById("sliderTime");
+    let hourHTML = document.getElementById("hour");
+    hourHTML.innerHTML = slider.value; // Display the default slider value
+    // Update the current slider value (each time you drag the slider handle)
+    slider.oninput = function() {
+      hourHTML.innerHTML = this.value;
+      hour = slider.value;
+    }
+
+    function handleClick(day) {
+      day = day.value;
+    }
+
+    let pause = false
+    let setIntervalValid;
+
+    function handlePlay() {
+      setIntervalValid = setInterval(updateCircle, 5000)
+    }
+
+    function handlePause() {
+      clearInterval(setIntervalValid)
+    }
 
     function updateCircle() {
       console.log("rendering")
-      if (hours === 23) {
-        hours = 0;
+      if (hour === 23) {
+        hour = 0;
       }
 
       circles.forEach((circle, idx) => {
-        let radius = circle.populartimes[day].data[hours];
+        let radius = circle.populartimes[day].data[hour];
         radius = radius * 0.65;
         circle.setRadius(radius)
       })
-      hours += 1;
+      slider.value = hour;
+      hourHTML.innerHTML = hour;
+      hour += 1;
     }
-
-    // setInterval(updateCircle, 1000)
 
     </script>
 
