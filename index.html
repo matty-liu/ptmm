@@ -58,11 +58,11 @@
     </div>
 
     <div id="resturantDensitySliderContainer">
-      <input type="range" min="0" max="100" value="0" class="slider" id="resturantDensitySlider" onchange="">
+      <input type="range" min="0" max="100" value="20" class="slider" id="resturantDensitySlider" onchange="">
     </div>
 
     <div>
-      Restaurant Density: <span id="restDen"></span>
+      Restaurant Density: <span id="restDen">20</span>
     </div>
 
     <!-- Map Data from Google Places -->
@@ -92,25 +92,16 @@
 
     function initMap() {
 
-      const appAcademyLatLng = { lat:40.751259, lng: -73.984030 };
+      // const appAcademyLatLng = { lat:40.751259, lng: -73.984030 };
 
       map = new google.maps.Map(document.getElementById('map'), {
         disableDefaultUI: true,
-        center: { lat:40.751259, lng: -73.984030 },
+        center: {lat: 40.73318067925024, lng: -73.99484466674808},
         zoom: 13,
         styles: nightStyles,
         zoomControl: true,
       });
 
-      google.maps.event.addListener(map, 'idle', () => {
-        console.log("bounds have changed!")
-        const {north,south,east,west} = map.getBounds().toJSON()
-        currentBounds = {
-          southwest: {lat:south, lng:west},
-          northEast: {lat:north, lng:east},
-        }
-        debugger
-      })
 
       googlePlaces.forEach((place) => {
 
@@ -127,7 +118,15 @@
           position: place.coordinates,
         })
 
-        let contentString =
+        let chance = 20;
+        let randNum = Math.random()*100;
+
+        if (randNum <= chance) {
+        } else {
+          circle.setMap(null)
+        }
+
+        const contentString =
         `<div>`+
           `<div>Name: ${place.name}<div>`+
           `<div>Address: ${place.address}<div>`+
@@ -145,6 +144,21 @@
         })
 
         circles.push(circle)
+
+        let numChanges = 0;
+        google.maps.event.addListener(map, 'idle', () => {
+          console.log("bounds have changed!")
+          const {north,south,east,west} = map.getBounds().toJSON()
+          currentBounds = {
+            southWest: {lat:south, lng:west},
+            northEast: {lat:north, lng:east},
+          }
+          if (numChanges > 1) {
+            updateMap()
+          }
+          numChanges += 1
+        })
+
       })
 
       // let marker = new google.maps.Marker({
@@ -155,12 +169,6 @@
 
     }
     </script>
-
-    <script>
-
-
-    </script>
-
 
     <!-- data controls/filters -->
     <script>
@@ -188,7 +196,7 @@
     let setIntervalValid;
 
     function handlePlay() {
-      setIntervalValid = setInterval(updateCircle, 2000)
+      setIntervalValid = setInterval(updateCircle, 500)
     }
 
     function handlePause() {
@@ -220,7 +228,15 @@
 
     }
 
-
+    function updateMap() {
+      circles.forEach((circle, idx) => {
+        if (circle.position.lat > currentBounds.southWest.lat && circle.position.lat < currentBounds.northEast.lat && circle.position.lng > currentBounds.southWest.lng && circle.position.lng < currentBounds.northEast.lng) {
+          circle.setMap(map)
+        } else {
+          circle.setMap(null)
+        }
+      })
+    }
 
     function updateCircle() {
       console.log("rendering")
