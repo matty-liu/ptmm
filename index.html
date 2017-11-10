@@ -62,7 +62,7 @@
     </div>
 
     <div>
-      Restaurant Density: <span id="restDen">20</span>
+      Restaurant Density: <span id="restDensity">20</span>
     </div>
 
     <!-- Map Data from Google Places -->
@@ -102,6 +102,15 @@
         zoomControl: true,
       });
 
+      google.maps.event.addListener(map, 'idle', () => {
+        console.log("bounds have changed!")
+        const {north,south,east,west} = map.getBounds().toJSON()
+        currentBounds = {
+          southWest: {lat:south, lng:west},
+          northEast: {lat:north, lng:east},
+        }
+      })
+
 
       googlePlaces.forEach((place) => {
 
@@ -131,7 +140,7 @@
           `<div>Name: ${place.name}<div>`+
           `<div>Address: ${place.address}<div>`+
           `<div>Phone Number: ${place.international_phone_number}<div>`+
-          `<div>Rating:${place.rating}<div>`+
+          `<div>Rating: ${place.rating}<div>`+
           `<div>Number of Ratings: ${place.rating_n}<div>`+
         `</div>`;
 
@@ -144,20 +153,6 @@
         })
 
         circles.push(circle)
-
-        let numChanges = 0;
-        google.maps.event.addListener(map, 'idle', () => {
-          console.log("bounds have changed!")
-          const {north,south,east,west} = map.getBounds().toJSON()
-          currentBounds = {
-            southWest: {lat:south, lng:west},
-            northEast: {lat:north, lng:east},
-          }
-          if (numChanges > 1) {
-            updateMap()
-          }
-          numChanges += 1
-        })
 
       })
 
@@ -175,7 +170,7 @@
 
     let hour = 0;
     let day = 0;
-    let restDen = 0;
+    let restDensity = 0;
 
     let hourSlider = document.getElementById("hourSlider");
     let hourHTML = document.getElementById("hour");
@@ -204,7 +199,7 @@
     }
 
     let resturantDensitySlider = document.getElementById("resturantDensitySlider");
-    let restDenHTML = document.getElementById("restDen");
+    let restDenHTML = document.getElementById("restDensity");
 
     // Display the default slider value
     restDenHTML.innerHTML = resturantDensitySlider.value;
@@ -212,11 +207,11 @@
     resturantDensitySlider.oninput = function() {
 
       restDenHTML.innerHTML = this.value;
-      restDen = parseInt(this.value);
+      restDensity = parseInt(this.value);
       // toggling circle that will be shown.
       circles.forEach((circle, idx) => {
 
-        let chance = restDen;
+        let chance = restDensity;
         let randNum = Math.random()*100;
 
         if (randNum <= chance) {
@@ -228,15 +223,19 @@
 
     }
 
-    function updateMap() {
-      circles.forEach((circle, idx) => {
-        if (circle.position.lat > currentBounds.southWest.lat && circle.position.lat < currentBounds.northEast.lat && circle.position.lng > currentBounds.southWest.lng && circle.position.lng < currentBounds.northEast.lng) {
-          circle.setMap(map)
-        } else {
-          circle.setMap(null)
-        }
-      })
-    }
+    // function updateMap() {
+    //   circles.forEach((circle, idx) => {
+    //
+    //     if (circle.position.lat > currentBounds.southWest.lat &&
+    //       circle.position.lat < currentBounds.northEast.lat &&
+    //       circle.position.lng > currentBounds.southWest.lng &&
+    //       circle.position.lng < currentBounds.northEast.lng) {
+    //       circle.setMap(map)
+    //     } else {
+    //       circle.setMap(null)
+    //     }
+    //   })
+    // }
 
     function updateCircle() {
       console.log("rendering")
