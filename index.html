@@ -111,7 +111,6 @@
         }
       })
 
-
       googlePlaces.forEach((place) => {
 
         const circle = new google.maps.Circle({
@@ -154,13 +153,16 @@
 
         circles.push(circle)
 
+        // const heatMapPoint = { location: new google.maps.LatLng(place.coordinates.lat, place.coordinates.lng), weight: 0 }
+        // heatMapData.push(heatMapPoint)
+
       })
 
-      // let marker = new google.maps.Marker({
-      //   position: appAcademyLatLng,
-      //   map: map,
-      //   title: 'App Academy',
+      // let heatmap = new google.maps.visualization.HeatmapLayer({
+      //   data: heatMapData,
       // });
+      //
+      // heatmap.setMap(map);
 
     }
     </script>
@@ -185,6 +187,7 @@
 
     function handleDay(day) {
       day = day.value;
+      updateCircle()
     }
 
     let pause = false
@@ -237,12 +240,16 @@
     //   })
     // }
 
+    let heatmap;
+    let heatMapData = [];
+
     function updateCircle() {
       console.log("rendering")
       if (hour === 23) {
         hour = 0;
       }
 
+      heatMapData = []
       circles.forEach((circle, idx) => {
         let radius = circle.populartimes[day].data[hour];
         radius = radius * 0.65;
@@ -256,8 +263,11 @@
 
     </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASUnStAUyUBSLjckIAwrFwrg2e4mTnmGs&callback=initMap"
-    async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASUnStAUyUBSLjckIAwrFwrg2e4mTnmGs&callback=initMap&libraries=visualization"async defer>
+    </script>
+
+    <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization">
+    </script> -->
 
   </body>
 </html>
