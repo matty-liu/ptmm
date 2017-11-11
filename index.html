@@ -3,15 +3,16 @@
 <html>
   <head>
 
-    <title>My Map</title>
+
+    <title>Populartimes Manhattan</title>
 
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
 
     <style>
       #map {
-          height: 80%;
-          width: 80%;
+          height: 100%;
+          width: 50%;
         }
       html, body {
         height: 100vh;
@@ -21,48 +22,67 @@
       }
     </style>
 
+    <link href="https://fonts.googleapis.com/css?family=Anaheim" rel="stylesheet">
+    <link rel="stylesheet" href="styles/page.css">
+
   </head>
 
-  <body>
+  <body class="body">
 
     <!-- Night Time Style of Map -->
     <script src="styles/map-styles-night.js"></script>
 
     <div id="map"></div>
 
-    <div id="day">
-      <input type="radio" id="monday" name="day" value="0" onclick="handleDay(this)" checked="checked">
-      <label for="monday">Monday</label>
-      <input type="radio" id="tuesday" name="day" value="1" onclick="handleDay(this)">
-      <label for="tuesday">Tuesday</label>
-      <input type="radio" id="wednesday" name="day" value="2" onclick="handleDay(this)">
-      <label for="wednesday">Wednesday</label>
-      <input type="radio" id="Thursday" name="day" value="3" onclick="handleDay(this)">
-      <label for="Thursday">Thursday</label>
-      <input type="radio" id="friday" name="day" value="4" onclick="handleDay(this)">
-      <label for="friday">Friday</label>
-      <input type="radio" id="saturday" name="day" value="5" onclick="handleDay(this)">
-      <label for="saturday">Saturday</label>
-      <input type="radio" id="sunday" name="day" value="6" onclick="handleDay(this)">
-      <label for="sunday">Sunday</label>
-    </div>
+    <div class="left">
+      <div class="left-title">The Populartimes - Manhattan</div>
+      <br>
+      <div>Welcome to the the populartimes data visualization! Each dot on the map represent a restaurant in the Manhattan area. Using Google's places API, we use the populartimes data to show how busy a location is (relatively speaking).
+      <br><br>
+      Hit the play button to animate the data below!
+      </div>
+      <br>
 
-    <div id="hourSliderContainer">
-      <input type="range" min="0" max="23" value="0" class="slider" id="hourSlider" onchange="updateCircle(this)">
+      <div class="left-day">Day of the Week<div>
+      <div id="day">
+        <input type="radio" id="monday" name="day" value="0" onclick="handleDay(this)" checked="checked">
+        <label for="monday">Monday&nbsp</label>
+        <input type="radio" id="tuesday" name="day" value="1" onclick="handleDay(this)">
+        <label for="tuesday">Tuesday&nbsp</label>
+        <input type="radio" id="wednesday" name="day" value="2" onclick="handleDay(this)">
+        <label for="wednesday">Wednesday&nbsp</label>
+        <input type="radio" id="Thursday" name="day" value="3" onclick="handleDay(this)">
+        <label for="Thursday">Thursday&nbsp</label>
+        <input type="radio" id="friday" name="day" value="4" onclick="handleDay(this)">
+        <label for="friday">Friday&nbsp</label>
+        <input type="radio" id="saturday" name="day" value="5" onclick="handleDay(this)">
+        <label for="saturday">Saturday&nbsp</label>
+        <input type="radio" id="sunday" name="day" value="6" onclick="handleDay(this)">
+        <label for="sunday">Sunday</label>
+      </div>
+      <br>
+      <br>
+
+      <div class="hourTitle">Hour (military time)</div>
+      <div id="hourSliderContainer">
+        <input type="range" min="0" max="23" value="0" class="slider" id="hourSlider" onchange="updateCircle(this)">
+      </div>
+      Hour: <span id="hour">0</span>
       <button type="button" name="button" onclick="handlePlay()">play</button>
       <button type="button" name="button" onclick="handlePause()">pause</button>
-    </div>
 
-    <div>
-      Hour: <span id="hour">0</span>
-    </div>
 
-    <div id="resturantDensitySliderContainer">
-      <input type="range" min="0" max="100" value="20" class="slider" id="resturantDensitySlider" onchange="">
-    </div>
-
-    <div>
-      Restaurant Density: <span id="restDensity">20</span>
+      <br><br><br>
+      <div>Restaurant Density</div>
+      <div id="resturantDensitySliderContainer">
+        <input type="range" min="0" max="100" value="20" class="slider" id="resturantDensitySlider" onchange="">
+        <br>
+      </div>
+      Restaurant Density: <span id="restDensity">20</span>%
+      <br><br>
+      Note: The default density is set to 20% as most devices should be able to handle the data input. Depending on your device, you may experience extrenuous lag.
+      <br><br>
+      Visit my github or send me an email if you'd like to contact me! 
     </div>
 
     <!-- Map Data from Google Places -->
@@ -74,11 +94,11 @@
     <script src="data/places-manhat-data-sample6.js"></script>
     <!-- Data bounded to a googlePlaces variable -->
     <script>
-    let googlePlaces = googlePlacesData1.concat(googlePlacesData2)
-    googlePlaces = googlePlaces.concat(googlePlacesData3)
-    googlePlaces = googlePlaces.concat(googlePlacesData4)
-    googlePlaces = googlePlaces.concat(googlePlacesData5)
-    googlePlaces = googlePlaces.concat(googlePlacesData6)
+      let googlePlaces = googlePlacesData1.concat(googlePlacesData2)
+      googlePlaces = googlePlaces.concat(googlePlacesData3)
+      googlePlaces = googlePlaces.concat(googlePlacesData4)
+      googlePlaces = googlePlaces.concat(googlePlacesData5)
+      googlePlaces = googlePlaces.concat(googlePlacesData6)
     </script>
 
     <!-- Map and data point generation -->
@@ -135,7 +155,7 @@
         }
 
         const contentString =
-        `<div>`+
+        `<div class="infowindow">`+
           `<div>Name: ${place.name}<div>`+
           `<div>Address: ${place.address}<div>`+
           `<div>Phone Number: ${place.international_phone_number}<div>`+
@@ -157,7 +177,7 @@
         // heatMapData.push(heatMapPoint)
 
       })
-
+      //
       // let heatmap = new google.maps.visualization.HeatmapLayer({
       //   data: heatMapData,
       // });
@@ -203,6 +223,7 @@
 
     let resturantDensitySlider = document.getElementById("resturantDensitySlider");
     let restDenHTML = document.getElementById("restDensity");
+
 
     // Display the default slider value
     restDenHTML.innerHTML = resturantDensitySlider.value;

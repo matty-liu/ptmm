@@ -89,4 +89,9 @@ const nightStyles = [
               elementType: 'labels.icon',
               stylers: [{visibility: 'off'}]
             },
+            {
+              featureType: 'road',
+              elementType: 'labels',
+              stylers: [{visibility: 'off'}]
+            },
           ]

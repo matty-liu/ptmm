@@ -1,0 +1,54 @@
+
+.body {
+  display: flex;
+  background-color: rgb(34,46,63);
+  color: white;
+}
+
+.left {
+  width: 50%;
+  margin: 40px;
+  font-family: 'Anaheim', sans-serif;
+  display: flex;
+  flex-direction: column;
+  /*justify-content: center;*/
+}
+
+.left-title {
+  display: flex;
+  font-size: 40px;
+  justify-content: center;
+}
+
+.left-day {
+
+}
+
+#day {
+  display: flex;
+  justify-content: center;
+}
+
+input[type=range] {
+
+  margin: 10px 0;
+  width: 75%;
+}
+
+.hourTitle {
+
+}
+
+#hourSliderContainer {
+  display: flex;
+  justify-content: center;
+}
+
+#resturantDensitySliderContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.infowindow {
+  color: rgb(34,46,63);
+}
