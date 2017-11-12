@@ -55,7 +55,6 @@ resturantDensitySlider.oninput = function() {
 }
 
 
-
 // update day on change of radio button
 let dayRadio = document.getElementById("day")
 dayRadio.onchange = function(event) {
@@ -104,11 +103,16 @@ function handleDay(day) {
   dayHTML.innerHTML = dayname;
 }
 
+let alreadyPressed = false
 function handlePlay() {
-  setIntervalValid = setInterval(contUpdateCircle, 500);
+  if (!alreadyPressed) {
+    alreadyPressed = true;
+    setIntervalValid = setInterval(contUpdateCircle, 500);
+  }
 }
 
 function handlePause() {
+  alreadyPressed = false;
   clearInterval(setIntervalValid);
 }
 
@@ -131,7 +135,7 @@ function updateCircle() {
 
 function contUpdateCircle() {
   console.log("continuous updating")
-  if (hour >= 23) {
+  if (hour > 23) {
     hour = 0;
     day += 1;
     if (day > 6) {

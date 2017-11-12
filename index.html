@@ -11,7 +11,7 @@
     <style>
       #map {
           height: 100%;
-          width: 50%;
+          width: 55%;
         }
       html, body {
         height: 100vh;
@@ -32,7 +32,7 @@
     <!-- Night Time Style of Map -->
     <script src="styles/map-styles-night.js"></script>
 
-    <div id="clock"><span id="dayofweek">DAY</span> <span class="hour"></span>:00</div>
+    <div id="clock"><span id="dayofweek">Monday</span> <span class="hour">00</span>:00</div>
     <div id="map"></div>
 
     <div class="left">
@@ -78,13 +78,12 @@
       </form>
 
       <br>
-      <br>
 
-      <div class="hourTitle">Hour (military time)</div>
+      <div class="hourTitle">Hour (military time) : <span class="hour">00</span>:00</div>
       <div id="hourSliderContainer">
         <input type="range" min="0" max="23" value="0" class="slider" id="hourSlider">
       </div>
-      Hour: <span class="hour">0</span>:00
+
       <button type="button" name="button" onclick="handlePlay()">play</button>
       <button type="button" name="button" onclick="handlePause()">pause</button>
 

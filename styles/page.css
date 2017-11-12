@@ -10,10 +10,11 @@
   color: white;
   z-index: 3;
   margin: 40px;
+  font-size: 35px;
 }
 
 .left {
-  width: 50%;
+  width: 45%;
   margin: 40px;
   font-family: 'Anaheim', sans-serif;
   display: flex;
@@ -26,10 +27,6 @@
   display: flex;
   font-size: 40px;
   justify-content: center;
-}
-
-.left-day {
-
 }
 
 #day {
