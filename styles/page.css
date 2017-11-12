@@ -5,13 +5,21 @@
   color: white;
 }
 
+#clock {
+  position: absolute;
+  color: white;
+  z-index: 3;
+  margin: 40px;
+}
+
 .left {
   width: 50%;
   margin: 40px;
   font-family: 'Anaheim', sans-serif;
   display: flex;
   flex-direction: column;
-  /*justify-content: center;*/
+  align-content: space-between;
+  justify-content: center;
 }
 
 .left-title {
@@ -26,17 +34,18 @@
 
 #day {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+}
+
+.day {
+  margin: 0 10px;
 }
 
 input[type=range] {
-
   margin: 10px 0;
   width: 75%;
-}
-
-.hourTitle {
-
 }
 
 #hourSliderContainer {
@@ -51,4 +60,22 @@ input[type=range] {
 
 .infowindow {
   color: rgb(34,46,63);
+}
+
+.footer {
+  position: relative;
+  bottom: 0;
+  padding: 1rem;
+}
+
+.footer-logos {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-logos a {
+  margin: 10px;
+  color: white;
+  text-decoration: none;
+  font-size: 40px;
 }

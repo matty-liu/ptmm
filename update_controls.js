@@ -6,26 +6,42 @@ let restDensity = 0;
 
 
 let hourSlider = document.getElementById("hourSlider");
-let hourHTML = document.getElementById("hour");
-hourHTML.innerHTML = hourSlider.value; // Display the default slider value
-// Update the current slider value (each time you drag the slider handle)
+let hourHTMLclass = document.getElementsByClassName("hour");
 
-hourSlider.oninput = function() {
-  // this refers to the hour sider in here
-  hourHTML.innerHTML = this.value;
+// Display the default slider value and clock value for map on startup
+// For loop because we are showing time in multiple places
+for (let i = 0 ; i < hourHTMLclass.length; i++) {
+  hourHTMLclass[i].innerHTML = hour
+}
+
+// Update the current slider value (each time you drag the slider handle)
+hourSlider.onchange = function() {
+  // "this" refers to the hour slider position
   hour = parseInt(this.value);
+
+  for (let i = 0 ; i < hourHTMLclass.length; i++) {
+    if (hour < 10) {
+      hourHTMLclass[i].innerHTML = "0" + this.value
+    } else {
+      hourHTMLclass[i].innerHTML = this.value
+    }
+  }
+
   updateCircle()
 }
+
 
 
 let resturantDensitySlider = document.getElementById("resturantDensitySlider");
 let restDenHTML = document.getElementById("restDensity");
 // Display the default slider value
 restDenHTML.innerHTML = resturantDensitySlider.value;
+
 // Update the current slider value (each time you drag the slider handle)
 resturantDensitySlider.oninput = function() {
   restDenHTML.innerHTML = this.value;
   restDensity = parseInt(this.value);
+
   // toggling circle that will be shown.
   circles.forEach((circle, idx) => {
     let chance = restDensity;
@@ -38,16 +54,55 @@ resturantDensitySlider.oninput = function() {
   })
 }
 
+
+
+// update day on change of radio button
 let dayRadio = document.getElementById("day")
 dayRadio.onchange = function(event) {
   day = parseInt(event.target.value);
+  updateCircle()
 }
 
+let dayHTML = document.getElementById("dayofweek")
 function handleDay(day) {
-  day = parseInt(day.value);
-  updateCircle(day);
-}
 
+  if (!(typeof day === "number")) {
+    day = parseInt(day.value);
+  }
+
+  let dayname;
+  switch (day) {
+    case 0:
+      dayname = "Monday"
+      break
+    case 1:
+      dayname = "Tuesday"
+      break
+    case 2:
+      dayname = "Wednesday"
+      break
+    case 3:
+      dayname = "Thursday"
+      break
+    case 4:
+      dayname = "Friday"
+      break
+    case 5:
+      dayname = "Saturday"
+      break
+    case 6:
+      dayname = "Sunday"
+      break
+  }
+
+  // if not user generated click, update radio button
+  if (!(event)) {
+    document.getElementById(dayname).click()
+  }
+
+  // update day HTML on map
+  dayHTML.innerHTML = dayname;
+}
 
 function handlePlay() {
   setIntervalValid = setInterval(contUpdateCircle, 500);
@@ -56,6 +111,7 @@ function handlePlay() {
 function handlePause() {
   clearInterval(setIntervalValid);
 }
+
 
 
 function updateCircle() {
@@ -68,13 +124,20 @@ function updateCircle() {
   })
 
   hourSlider.value = hour;
-  hourHTML.innerHTML = hour;
+  // for (let i = 0 ; i < hourHTMLclass.length; i++) {
+  //   hourHTMLclass[i].innerHTML = hour
+  // }
 }
 
 function contUpdateCircle() {
   console.log("continuous updating")
-  if (hour === 23) {
+  if (hour >= 23) {
     hour = 0;
+    day += 1;
+    if (day > 6) {
+      day = 0
+    }
+    handleDay(day)
   }
 
   circles.forEach((circle, idx) => {
@@ -84,9 +147,20 @@ function contUpdateCircle() {
   })
 
   hourSlider.value = hour;
-  hourHTML.innerHTML = hour;
+  // changing the hourSlider programmatically does not trigger the onchange
+  // listener so we manually set the innerHTML for this reason
+  for (let i = 0 ; i < hourHTMLclass.length; i++) {
+    if (hour < 10) {
+      hourHTMLclass[i].innerHTML = "0" + hour
+    } else {
+      hourHTMLclass[i].innerHTML = hour
+    }
+  }
   hour += 1;
 }
+
+
+
 
 // function updateMap() {
 //   circles.forEach((circle, idx) => {

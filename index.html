@@ -23,6 +23,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Anaheim" rel="stylesheet">
     <link rel="stylesheet" href="styles/page.css">
+    <script src="https://use.fontawesome.com/c3ae742dde.js"></script>
 
   </head>
 
@@ -31,36 +32,50 @@
     <!-- Night Time Style of Map -->
     <script src="styles/map-styles-night.js"></script>
 
+    <div id="clock"><span id="dayofweek">DAY</span> <span class="hour"></span>:00</div>
     <div id="map"></div>
 
     <div class="left">
       <div class="left-title">The Populartimes - Manhattan</div>
       <br>
-      <div>Welcome to the the populartimes data visualization! Each dot on the map represent a restaurant in the Manhattan area. Using Google's places API, we use the populartimes data to show how busy a location is (relatively speaking).
-      <br><br>
-      Hit the play button to animate the data below!
+      <div>Welcome to the the populartimes data visualization of Manhattan! <br><br>
+        Each dot on the map represent an establishment in the Manhattan area. The size of each dot will change with respect to how busy the establishment is (relatively speaking). Hit the play button to animate the data below! You may also click on the dot to identify the establishment. <br><br>
+        restaurants(red dots), bars (green dots), nightclubs (blue dots) <br><br>
+
+        The populartimes data is pulled from Google's Places API.
       </div>
       <br>
 
       <div class="left-day">Day of the Week<div>
       <form id="day">
-        <input type="radio" id="monday" name="day" value="0" onclick="handleDay(this)" checked="checked">
-        <label for="monday">Monday&nbsp</label>
-        <input type="radio" id="tuesday" name="day" value="1" onclick="handleDay(this)">
-        <label for="tuesday">Tuesday&nbsp</label>
-        <input type="radio" id="wednesday" name="day" value="2" onclick="handleDay(this)">
-        <label for="wednesday">Wednesday&nbsp</label>
-        <input type="radio" id="Thursday" name="day" value="3" onclick="handleDay(this)">
-        <label for="Thursday">Thursday&nbsp</label>
-        <input type="radio" id="friday" name="day" value="4" onclick="handleDay(this)">
-        <label for="friday">Friday&nbsp</label>
-        <input type="radio" id="saturday" name="day" value="5" onclick="handleDay(this)">
-        <label for="saturday">Saturday&nbsp</label>
-        <input type="radio" id="sunday" name="day" value="6" onclick="handleDay(this)">
-        <label for="sunday">Sunday</label>
+        <div class="day">
+          <input type="radio" id="Monday" name="day" value="0" onclick="handleDay(this,event)" checked="checked"><label   for="monday">Monday</label>
+        </div>
+        <div class="day">
+          <input type="radio" id="Tuesday" name="day" value="1" onclick="handleDay(this)">
+          <label for="tuesday">Tuesday</label>
+        </div>
+        <div class="day">
+          <input type="radio" id="Wednesday" name="day" value="2" onclick="handleDay(this)">
+          <label for="wednesday">Wednesday</label>
+        </div>
+        <div class="day">
+          <input type="radio" id="Thursday" name="day" value="3" onclick="handleDay(this)">
+          <label for="Thursday">Thursday</label>
+        </div>
+        <div class="day">
+          <input type="radio" id="Friday" name="day" value="4" onclick="handleDay(this)">
+          <label for="friday">Friday</label>
+        </div>
+        <div class="day">
+          <input type="radio" id="Saturday" name="day" value="5" onclick="handleDay(this)">
+          <label for="saturday">Saturday</label>
+        </div>
+        <div class="day">
+          <input type="radio" id="Sunday" name="day" value="6" onclick="handleDay(this)">
+          <label for="sunday">Sunday</label>
+        </div>
       </form>
-
-      day.
 
       <br>
       <br>
@@ -69,7 +84,7 @@
       <div id="hourSliderContainer">
         <input type="range" min="0" max="23" value="0" class="slider" id="hourSlider">
       </div>
-      Hour: <span id="hour">0</span>
+      Hour: <span class="hour">0</span>:00
       <button type="button" name="button" onclick="handlePlay()">play</button>
       <button type="button" name="button" onclick="handlePause()">pause</button>
 
@@ -85,10 +100,16 @@
       Note: The default density is set to 20% as most devices should be able to handle the data input. Depending on your device, you may experience extrenuous lag.
       <br><br>
 
-
-      <div>
-        Visit my github or send me an email if you'd like to contact me!
+      <div class="footer">
+        If you'd like my project, check out my what else I am working on by checking out my portfolio page and github!
+        <div class="footer-logos">
+          <a class="fa fa-user-o" aria-hidden="true" href="http://mattyliu.com"></a>
+          <a class="fa fa-github" aria-hidden="true" href="https://github.com/matty-liu"></a>
+          <a class="fa fa-linkedin-square" aria-hidden="true" href="https://www.linkedin.com/in/matthew-liuu/"></a>
+          <a class="fa fa-envelope" aria-hidden="true" href="mailto:mattkliu@gmail.com"></a>
+        </div>
       </div>
+
     </div>
 
 
