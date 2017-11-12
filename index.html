@@ -3,7 +3,6 @@
 <html>
   <head>
 
-
     <title>Populartimes Manhattan</title>
 
     <meta name="viewport" content="initial-scale=1.0">
@@ -44,7 +43,7 @@
       <br>
 
       <div class="left-day">Day of the Week<div>
-      <div id="day">
+      <form id="day">
         <input type="radio" id="monday" name="day" value="0" onclick="handleDay(this)" checked="checked">
         <label for="monday">Monday&nbsp</label>
         <input type="radio" id="tuesday" name="day" value="1" onclick="handleDay(this)">
@@ -59,13 +58,16 @@
         <label for="saturday">Saturday&nbsp</label>
         <input type="radio" id="sunday" name="day" value="6" onclick="handleDay(this)">
         <label for="sunday">Sunday</label>
-      </div>
+      </form>
+
+      day.
+
       <br>
       <br>
 
       <div class="hourTitle">Hour (military time)</div>
       <div id="hourSliderContainer">
-        <input type="range" min="0" max="23" value="0" class="slider" id="hourSlider" onchange="updateCircle(this)">
+        <input type="range" min="0" max="23" value="0" class="slider" id="hourSlider">
       </div>
       Hour: <span id="hour">0</span>
       <button type="button" name="button" onclick="handlePlay()">play</button>
@@ -75,17 +77,22 @@
       <br><br><br>
       <div>Restaurant Density</div>
       <div id="resturantDensitySliderContainer">
-        <input type="range" min="0" max="100" value="20" class="slider" id="resturantDensitySlider" onchange="">
+        <input type="range" min="0" max="100" value="20" class="slider" id="resturantDensitySlider">
         <br>
       </div>
       Restaurant Density: <span id="restDensity">20</span>%
       <br><br>
       Note: The default density is set to 20% as most devices should be able to handle the data input. Depending on your device, you may experience extrenuous lag.
       <br><br>
-      Visit my github or send me an email if you'd like to contact me! 
+
+
+      <div>
+        Visit my github or send me an email if you'd like to contact me!
+      </div>
     </div>
 
-    <!-- Map Data from Google Places -->
+
+    <!-- Resturant Data from Google Places -->
     <script src="data/places-manhat-data-sample.js"></script>
     <script src="data/places-manhat-data-sample2.js"></script>
     <script src="data/places-manhat-data-sample3.js"></script>
@@ -104,15 +111,12 @@
     <!-- Map and data point generation -->
     <script>
     console.log(googlePlaces)
-    // let uniquePlaces = []
 
     let map;
     let circles = [];
     let currentBounds;
 
     function initMap() {
-
-      // const appAcademyLatLng = { lat:40.751259, lng: -73.984030 };
 
       map = new google.maps.Map(document.getElementById('map'), {
         disableDefaultUI: true,
@@ -188,107 +192,11 @@
     </script>
 
     <!-- data controls/filters -->
-    <script>
-
-    let hour = 0;
-    let day = 0;
-    let restDensity = 0;
-
-    let hourSlider = document.getElementById("hourSlider");
-    let hourHTML = document.getElementById("hour");
-    hourHTML.innerHTML = hourSlider.value; // Display the default slider value
-    // Update the current slider value (each time you drag the slider handle)
-
-    hourSlider.oninput = function() {
-      // this refers to the hour sider in here
-      hourHTML.innerHTML = this.value;
-      hour = parseInt(this.value);
-    }
-
-    function handleDay(day) {
-      day = day.value;
-      updateCircle()
-    }
-
-    let pause = false
-    let setIntervalValid;
-
-    function handlePlay() {
-      setIntervalValid = setInterval(updateCircle, 500)
-    }
-
-    function handlePause() {
-      clearInterval(setIntervalValid)
-    }
-
-    let resturantDensitySlider = document.getElementById("resturantDensitySlider");
-    let restDenHTML = document.getElementById("restDensity");
-
-
-    // Display the default slider value
-    restDenHTML.innerHTML = resturantDensitySlider.value;
-    // Update the current slider value (each time you drag the slider handle)
-    resturantDensitySlider.oninput = function() {
-
-      restDenHTML.innerHTML = this.value;
-      restDensity = parseInt(this.value);
-      // toggling circle that will be shown.
-      circles.forEach((circle, idx) => {
-
-        let chance = restDensity;
-        let randNum = Math.random()*100;
-
-        if (randNum <= chance) {
-          circle.setMap(map)
-        } else {
-          circle.setMap(null)
-        }
-      })
-
-    }
-
-    // function updateMap() {
-    //   circles.forEach((circle, idx) => {
-    //
-    //     if (circle.position.lat > currentBounds.southWest.lat &&
-    //       circle.position.lat < currentBounds.northEast.lat &&
-    //       circle.position.lng > currentBounds.southWest.lng &&
-    //       circle.position.lng < currentBounds.northEast.lng) {
-    //       circle.setMap(map)
-    //     } else {
-    //       circle.setMap(null)
-    //     }
-    //   })
-    // }
-
-    let heatmap;
-    let heatMapData = [];
-
-    function updateCircle() {
-      console.log("rendering")
-      if (hour === 23) {
-        hour = 0;
-      }
-
-      heatMapData = []
-      circles.forEach((circle, idx) => {
-        let radius = circle.populartimes[day].data[hour];
-        radius = radius * 0.65;
-        circle.setRadius(radius)
-      })
-
-      hourSlider.value = hour;
-      hourHTML.innerHTML = hour;
-      hour += 1;
-    }
-
+    <script src="update_controls.js">
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASUnStAUyUBSLjckIAwrFwrg2e4mTnmGs&callback=initMap&libraries=visualization"async defer>
     </script>
-
-    <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization">
-    </script> -->
 
   </body>
 </html>
