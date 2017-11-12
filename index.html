@@ -99,6 +99,8 @@
     <script src="data/places-manhat-data-sample4.js"></script>
     <script src="data/places-manhat-data-sample5.js"></script>
     <script src="data/places-manhat-data-sample6.js"></script>
+    <!-- Bar Data from Google Places -->
+    <script src="data/places-manhat-data-bars1.js"></script>
     <!-- Data bounded to a googlePlaces variable -->
     <script>
       let googlePlaces = googlePlacesData1.concat(googlePlacesData2)
@@ -106,11 +108,13 @@
       googlePlaces = googlePlaces.concat(googlePlacesData4)
       googlePlaces = googlePlaces.concat(googlePlacesData5)
       googlePlaces = googlePlaces.concat(googlePlacesData6)
+      let googleBars = bars1
     </script>
 
     <!-- Map and data point generation -->
     <script>
     console.log(googlePlaces)
+    console.log(googleBars)
 
     let map;
     let circles = [];
@@ -192,8 +196,7 @@
     </script>
 
     <!-- data controls/filters -->
-    <script src="update_controls.js">
-    </script>
+    <script src="update_controls.js"></script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASUnStAUyUBSLjckIAwrFwrg2e4mTnmGs&callback=initMap&libraries=visualization"async defer>
     </script>
