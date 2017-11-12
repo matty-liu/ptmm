@@ -93,28 +93,26 @@
 
 
     <!-- Resturant Data from Google Places -->
-    <script src="data/places-manhat-data-sample.js"></script>
-    <script src="data/places-manhat-data-sample2.js"></script>
-    <script src="data/places-manhat-data-sample3.js"></script>
-    <script src="data/places-manhat-data-sample4.js"></script>
-    <script src="data/places-manhat-data-sample5.js"></script>
-    <script src="data/places-manhat-data-sample6.js"></script>
-    <!-- Bar Data from Google Places -->
+    <script src="data/places-manhat-data-restaurants.js"></script>
+    <script src="data/places-manhat-data-restaurants2.js"></script>
+    <script src="data/places-manhat-data-restaurants3.js"></script>
+    <script src="data/places-manhat-data-restaurants4.js"></script>
+    <script src="data/places-manhat-data-restaurants5.js"></script>
+    <script src="data/places-manhat-data-restaurants6.js"></script>
+    <!-- Bar+Nightclub Data from Google Places -->
     <script src="data/places-manhat-data-bars1.js"></script>
-    <!-- Data bounded to a googlePlaces variable -->
-    <script>
-      let googlePlaces = googlePlacesData1.concat(googlePlacesData2)
-      googlePlaces = googlePlaces.concat(googlePlacesData3)
-      googlePlaces = googlePlaces.concat(googlePlacesData4)
-      googlePlaces = googlePlaces.concat(googlePlacesData5)
-      googlePlaces = googlePlaces.concat(googlePlacesData6)
-      let googleBars = bars1
-    </script>
+    <script src="data/places-manhat-data-nightclub1.js"></script>
+
+    <!-- Data combined and bound to a variable named
+    googleRestaurants for resturants and
+    googlebars for bars -->
+    <script src="data/places-manhat-data-join.js"></script>
 
     <!-- Map and data point generation -->
     <script>
-    console.log(googlePlaces)
+    console.log(googleRestaurants)
     console.log(googleBars)
+    console.log(googleNightclub)
 
     let map;
     let circles = [];
@@ -139,13 +137,56 @@
         }
       })
 
-      googlePlaces.forEach((place) => {
-
+      googleRestaurants.forEach((place) => {
         const circle = new google.maps.Circle({
           strokeColor: '#FF0000',
           strokeOpacity: 0.8,
           strokeWeight: 2,
           fillColor: '#FF0000',
+          fillOpacity: 0.35,
+          map: map,
+          center: place.coordinates,
+          radius: 1,
+          populartimes: place.populartimes,
+          position: place.coordinates,
+        })
+
+        let chance = 20;
+        let randNum = Math.random()*100;
+        if (randNum <= chance) {
+        } else {
+          circle.setMap(null)
+        }
+
+        const contentString =
+        `<div class="infowindow">`+
+          `<div>Name: ${place.name}<div>`+
+          `<div>Address: ${place.address}<div>`+
+          `<div>Phone Number: ${place.international_phone_number}<div>`+
+          `<div>Rating: ${place.rating}<div>`+
+          `<div>Number of Ratings: ${place.rating_n}<div>`+
+        `</div>`;
+        const infowindow = new google.maps.InfoWindow({
+          content: contentString
+        })
+
+        circle.addListener('click', () => {
+          infowindow.open(map,circle);
+        })
+        circles.push(circle)
+
+        // const heatMapPoint = { location: new google.maps.LatLng(place.coordinates.lat, place.coordinates.lng), weight: 0 }
+        // heatMapData.push(heatMapPoint)
+
+      })
+
+      googleBars.forEach((place) => {
+
+        const circle = new google.maps.Circle({
+          strokeColor: '#00FF00',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#00FF00',
           fillOpacity: 0.35,
           map: map,
           center: place.coordinates,
@@ -181,10 +222,52 @@
 
         circles.push(circle)
 
-        // const heatMapPoint = { location: new google.maps.LatLng(place.coordinates.lat, place.coordinates.lng), weight: 0 }
-        // heatMapData.push(heatMapPoint)
+      })
+
+      googleNightclub.forEach((place) => {
+
+        const circle = new google.maps.Circle({
+          strokeColor: '#0000FF',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#0000FF',
+          fillOpacity: 0.35,
+          map: map,
+          center: place.coordinates,
+          radius: 1,
+          populartimes: place.populartimes,
+          position: place.coordinates,
+        })
+
+        let chance = 20;
+        let randNum = Math.random()*100;
+
+        if (randNum <= chance) {
+        } else {
+          circle.setMap(null)
+        }
+
+        const contentString =
+        `<div class="infowindow">`+
+          `<div>Name: ${place.name}<div>`+
+          `<div>Address: ${place.address}<div>`+
+          `<div>Phone Number: ${place.international_phone_number}<div>`+
+          `<div>Rating: ${place.rating}<div>`+
+          `<div>Number of Ratings: ${place.rating_n}<div>`+
+        `</div>`;
+
+        const infowindow = new google.maps.InfoWindow({
+          content: contentString
+        })
+
+        circle.addListener('click', () => {
+          infowindow.open(map,circle);
+        })
+
+        circles.push(circle)
 
       })
+
       //
       // let heatmap = new google.maps.visualization.HeatmapLayer({
       //   data: heatMapData,
