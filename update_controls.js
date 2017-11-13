@@ -103,11 +103,13 @@ function handleDay(day) {
   dayHTML.innerHTML = dayname;
 }
 
-let alreadyPressed = false
+
+
+let alreadyPressed = false // so users can't spam play button
 function handlePlay() {
   if (!alreadyPressed) {
     alreadyPressed = true;
-    setIntervalValid = setInterval(contUpdateCircle, 5000);
+    setIntervalValid = setInterval(contUpdateCircle, 500);
   }
 }
 
@@ -118,56 +120,57 @@ function handlePause() {
 
 
 
-function grow(radiusTarget, circle) {
-  let direction = 1;
-  const growing = setInterval(function() {
-    console.log("growing radius")
-    var radius = circle.getRadius();
-    if (radius >= radiusTarget) {
-      clearInterval(growing)
-    }
-    circle.setRadius(radius + direction * 5);
-  }, 50);
-}
+// function grow(radiusTarget, circle) {
+//   const growing = setInterval(function() {
+//     console.log("growing radius")
+//     var radius = circle.getRadius();
+//     if ((radius >= radiusTarget) || (alreadyPressed === false)) {
+//       circle.setRadius(radiusTarget)
+//       clearInterval(growing)
+//     }
+//     circle.setRadius(radius + (1*5));
+//   }, 10);
+// }
+//
+// function shrink(radiusTarget, circle) {
+//   const shrinking = setInterval(function() {
+//     console.log("shrinking radius")
+//     var radius = circle.getRadius();
+//     if ((radius >= radiusTarget) || (alreadyPressed === false)) {
+//       circle.setRadius(radiusTarget)
+//       clearInterval(shrinking)
+//     }
+//     circle.setRadius(radius - (1*5));
+//   }, 10);
+// }
 
-function shrink(radiusTarget, circle) {
-  let direction = -1;
-  const shrinking = setInterval(function() {
-    console.log("shrinking radius")
-    var radius = circle.getRadius();
-    if (radius >= radiusTarget) {
-      clearInterval(shrinking)
-    }
-    circle.setRadius(radius - direction * 5);
-  }, 50);
-}
+
 
 function updateCircle() {
   console.log("updating")
 
-  circles.forEach((circle, idx) => {
-    let radiusPrev = circle.radiusPrev
-    let radiusNew = circle.populartimes[day].data[hour];
-    radiusNew = radiusNew * 0.65;
+  circles.forEach( (circle, idx) => {
+    // let radiusNew = circle.populartimes[day].data[hour];
+    // var radius = circle.getRadius()
+    // radiusNew = radiusNew * 0.65;
+
+    let radius = circle.populartimes[day].data[hour];
+    radius = radius * 0.65;
+    circle.setRadius(radius) // for non growing animation
 
     // what direction the radius changes
-    if (radiusNew > radiusPrev) {
-      let radiusTarget = radiusNew
-      grow(radiusTarget, circle)
-      radiusPrev = radiusNew
-
-    } else {
-      let radiusTarget = radiusNew;
-      shrink(radiusTarget, circle)
-      radiusPrev = radiusNew
-    }
+  //   if (radiusNew > radius) {
+  //     let radiusTarget = radiusNew
+  //     grow(radiusTarget, circle)
+  //   } else {
+  //     let radiusTarget = radiusNew;
+  //     shrink(radiusTarget, circle)
+  //   }
   });
 
   hourSlider.value = hour;
-  // for (let i = 0 ; i < hourHTMLclass.length; i++) {
-  //   hourHTMLclass[i].innerHTML = hour
-  // }
 }
+
 
 function contUpdateCircle() {
   console.log("continuous updating")
@@ -181,10 +184,25 @@ function contUpdateCircle() {
   }
 
   circles.forEach((circle, idx) => {
+    // let radiusNew = circle.populartimes[day].data[hour];
+    // var radius = circle.getRadius()
+    // radiusNew = radiusNew * 0.65;
+
     let radius = circle.populartimes[day].data[hour];
     radius = radius * 0.65;
-    circle.setRadius(radius)
+    circle.setRadius(radius) // for non growing animation
+
+    // what direction the radius changes
+  //   if (radiusNew > radius) {
+  //     let radiusTarget = radiusNew
+  //     grow(radiusTarget, circle)
+  //   } else {
+  //     let radiusTarget = radiusNew;
+  //     shrink(radiusTarget, circle)
+  //   }
   })
+
+
 
   hourSlider.value = hour;
   // changing the hourSlider programmatically does not trigger the onchange

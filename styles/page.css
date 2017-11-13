@@ -43,10 +43,29 @@
 .hour-controls-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  color: black;
+  background-color: white;
+  border: none;
+  border-radius: 2px;
+  padding: 2px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+
+  transition: 0.3s;
+  transition-timing-function: linear;
 }
 
 button:hover {
   cursor: pointer;
+  background-color: black;
+  color: white;
+
 }
 
 input:hover {
@@ -93,4 +112,19 @@ input[type=range] {
 }
 .footer-logos a:hover {
   color: black;
+}
+
+.colors {
+  display: flex;
+  justify-content: center;
+}
+
+.red {
+  color: red;
+}
+.blue {
+  color: blue;
+}
+.green {
+  color: green;
 }
