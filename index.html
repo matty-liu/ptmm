@@ -79,24 +79,26 @@
 
       <br>
 
-      <div class="hourTitle">Hour (military time) : <span class="hour">00</span>:00</div>
+      <div class="hour-controls-container">
+        <div class="hourTitle">Hour (military time) : <span class="hour">00</span>:00</div>
+        <div>
+          <button type="button" name="button" onclick="handlePlay()">play</button>
+          <button type="button" name="button" onclick="handlePause()">pause</button>
+        </div>
+      </div>
       <div id="hourSliderContainer">
         <input type="range" min="0" max="23" value="0" class="slider" id="hourSlider">
       </div>
 
-      <button type="button" name="button" onclick="handlePlay()">play</button>
-      <button type="button" name="button" onclick="handlePause()">pause</button>
 
 
-      <br><br><br>
-      <div>Restaurant Density</div>
+
+      <br>
+      <div>Establishment Density: <span id="restDensity">20</span>%</div>
       <div id="resturantDensitySliderContainer">
         <input type="range" min="0" max="100" value="20" class="slider" id="resturantDensitySlider">
-        <br>
       </div>
-      Restaurant Density: <span id="restDensity">20</span>%
-      <br><br>
-      Note: The default density is set to 20% as most devices should be able to handle the data input. Depending on your device, you may experience extrenuous lag.
+      Note: The default density is set to 20% to support most devices.
       <br><br>
 
       <div class="footer">
@@ -167,6 +169,7 @@
           map: map,
           center: place.coordinates,
           radius: 1,
+          radiusPrev: 1,
           populartimes: place.populartimes,
           position: place.coordinates,
         })

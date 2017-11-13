@@ -10,9 +10,9 @@ let hourHTMLclass = document.getElementsByClassName("hour");
 
 // Display the default slider value and clock value for map on startup
 // For loop because we are showing time in multiple places
-for (let i = 0 ; i < hourHTMLclass.length; i++) {
-  hourHTMLclass[i].innerHTML = hour
-}
+// for (let i = 0 ; i < hourHTMLclass.length; i++) {
+//   hourHTMLclass[i].innerHTML = hour
+// }
 
 // Update the current slider value (each time you drag the slider handle)
 hourSlider.onchange = function() {
@@ -107,7 +107,7 @@ let alreadyPressed = false
 function handlePlay() {
   if (!alreadyPressed) {
     alreadyPressed = true;
-    setIntervalValid = setInterval(contUpdateCircle, 500);
+    setIntervalValid = setInterval(contUpdateCircle, 5000);
   }
 }
 
@@ -118,14 +118,50 @@ function handlePause() {
 
 
 
+function grow(radiusTarget, circle) {
+  let direction = 1;
+  const growing = setInterval(function() {
+    console.log("growing radius")
+    var radius = circle.getRadius();
+    if (radius >= radiusTarget) {
+      clearInterval(growing)
+    }
+    circle.setRadius(radius + direction * 5);
+  }, 50);
+}
+
+function shrink(radiusTarget, circle) {
+  let direction = -1;
+  const shrinking = setInterval(function() {
+    console.log("shrinking radius")
+    var radius = circle.getRadius();
+    if (radius >= radiusTarget) {
+      clearInterval(shrinking)
+    }
+    circle.setRadius(radius - direction * 5);
+  }, 50);
+}
+
 function updateCircle() {
   console.log("updating")
 
   circles.forEach((circle, idx) => {
-    let radius = circle.populartimes[day].data[hour];
-    radius = radius * 0.65;
-    circle.setRadius(radius)
-  })
+    let radiusPrev = circle.radiusPrev
+    let radiusNew = circle.populartimes[day].data[hour];
+    radiusNew = radiusNew * 0.65;
+
+    // what direction the radius changes
+    if (radiusNew > radiusPrev) {
+      let radiusTarget = radiusNew
+      grow(radiusTarget, circle)
+      radiusPrev = radiusNew
+
+    } else {
+      let radiusTarget = radiusNew;
+      shrink(radiusTarget, circle)
+      radiusPrev = radiusNew
+    }
+  });
 
   hourSlider.value = hour;
   // for (let i = 0 ; i < hourHTMLclass.length; i++) {

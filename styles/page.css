@@ -40,6 +40,19 @@
   margin: 0 10px;
 }
 
+.hour-controls-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+input:hover {
+  cursor: pointer;
+}
+
 input[type=range] {
   margin: 10px 0;
   width: 75%;
@@ -75,4 +88,9 @@ input[type=range] {
   color: white;
   text-decoration: none;
   font-size: 40px;
+  transition: color 0.3s;
+  transition-timing-function: linear;
+}
+.footer-logos a:hover {
+  color: black;
 }
