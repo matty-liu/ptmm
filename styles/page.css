@@ -1,19 +1,23 @@
 
 .body {
   display: flex;
+  /*flex-direction: column;*/
   background-color: rgb(34,46,63);
   color: white;
+  font-family: 'Anaheim', sans-serif;
 }
 
 #clock {
   position: absolute;
   color: white;
   z-index: 3;
-  margin: 40px;
-  font-size: 35px;
+  margin: 20px 40px;
+  font-size: 45px;
+  font-weight: bold;
+  opacity: 50%;
 }
 
-.left {
+/*.left {
   position: relative;
   width: 45%;
   margin: 40px;
@@ -21,15 +25,20 @@
 
   display: flex;
   flex-direction: column;
-  /*justify-content: center;*/
+  justify-content: center;
 }
 
 .left-title {
   top: 0;
   display: flex;
   font-size: 40px;
+  font-weight: bold;
   justify-content: center;
-}
+}*/
+
+  .left {
+    position: relative;
+  }
 
 .description-container {
   display: flex;
@@ -75,8 +84,6 @@
   align-items: center;
 }
 
-
-
 button {
   color: black;
   background-color: white;
@@ -97,7 +104,6 @@ button:hover {
   cursor: pointer;
   background-color: black;
   color: white;
-
 }
 
 input:hover {
@@ -105,13 +111,14 @@ input:hover {
 }
 
 input[type=range] {
-  margin: 10px 0;
+  margin: 10px;
   width: 75%;
 }
 
 #hourSliderContainer {
   display: flex;
   justify-content: center;
+  height: auto;
 }
 
 #resturantDensitySliderContainer {
