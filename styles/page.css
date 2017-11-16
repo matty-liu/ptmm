@@ -14,30 +14,54 @@
 }
 
 .left {
+  position: relative;
   width: 45%;
   margin: 40px;
   font-family: 'Anaheim', sans-serif;
+
   display: flex;
   flex-direction: column;
-  align-content: space-between;
-  justify-content: center;
+  /*justify-content: center;*/
 }
 
 .left-title {
+  top: 0;
   display: flex;
   font-size: 40px;
   justify-content: center;
 }
 
+.description-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: auto;
+}
+
+.controller{
+  display: flex;
+}
+
 #day {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: left;
 }
 
 .day {
+  width: 100px;
   margin: 0 10px;
+}
+
+.controller {
+  display: flex;
+}
+
+.controller-sliders {
+  display: flex;
+  flex-direction: column;
 }
 
 .hour-controls-container {
@@ -45,6 +69,13 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.hour-controls-buttons {
+  display: flex;
+  align-items: center;
+}
+
+
 
 button {
   color: black;
@@ -56,6 +87,7 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 12px;
+  margin: 0 5px;
 
   transition: 0.3s;
   transition-timing-function: linear;
@@ -92,9 +124,10 @@ input[type=range] {
 }
 
 .footer {
-  position: relative;
+  position: absolute;
   bottom: 0;
   padding: 1rem;
+  padding-bottom: 0
 }
 
 .footer-logos {
@@ -104,6 +137,7 @@ input[type=range] {
 
 .footer-logos a {
   margin: 10px;
+  margin-top: 15px;
   color: white;
   text-decoration: none;
   font-size: 40px;

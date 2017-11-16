@@ -38,76 +38,83 @@
     <div class="left">
       <div class="left-title">The Populartimes - Manhattan</div>
       <br>
-      <div>Welcome to the the populartimes data visualization of Manhattan! <br><br>
-        Each dot on the map represent an establishment in the Manhattan area. The size of each dot will change with respect to how busy the establishment is (relatively speaking) at the corresponding times that is indicated on the clock. <strong>You may also click on the dot to identify the establishment.</strong> <br><br>
 
-        <div class=colors>
-          <span class="red">restaurants (red dots)</span>&nbsp;,&nbsp;
-          <span class="green">bars (green dots)</span>&nbsp;,&nbsp;
-          <span class="blue">nightclubs (blue dots)</span>
-        </div>
 
-      </div>
-      <br>
+      <div class="description-container">
 
-      <div class="left-day">Day of the Week<div>
-      <form id="day">
-        <div class="day">
-          <input type="radio" id="Monday" name="day" value="0" onclick="handleDay(this,event)" checked="checked"><label   for="monday">Monday</label>
-        </div>
-        <div class="day">
-          <input type="radio" id="Tuesday" name="day" value="1" onclick="handleDay(this)">
-          <label for="tuesday">Tuesday</label>
-        </div>
-        <div class="day">
-          <input type="radio" id="Wednesday" name="day" value="2" onclick="handleDay(this)">
-          <label for="wednesday">Wednesday</label>
-        </div>
-        <div class="day">
-          <input type="radio" id="Thursday" name="day" value="3" onclick="handleDay(this)">
-          <label for="Thursday">Thursday</label>
-        </div>
-        <div class="day">
-          <input type="radio" id="Friday" name="day" value="4" onclick="handleDay(this)">
-          <label for="friday">Friday</label>
-        </div>
-        <div class="day">
-          <input type="radio" id="Saturday" name="day" value="5" onclick="handleDay(this)">
-          <label for="saturday">Saturday</label>
-        </div>
-        <div class="day">
-          <input type="radio" id="Sunday" name="day" value="6" onclick="handleDay(this)">
-          <label for="sunday">Sunday</label>
-        </div>
-      </form>
+        <div class="description">Welcome to the the populartimes data visualization of Manhattan! <br><br>
+          Each dot on the map represent an establishment in the Manhattan area. The size of each dot will change with respect to how busy the establishment is (relatively speaking) at the corresponding times that is indicated on the clock.  <br><br>
 
-      <br>
-
-      <div class="hour-controls-container">
-        <div class="hourTitle">Hour (military time) : <span class="hour">00</span>:00</div>
-        <div>
-          <button type="button" name="button" onclick="handlePlay()">play</button>
-          <button type="button" name="button" onclick="handlePause()">pause</button>
+          The different colored dots represent the following establishment types: <br><br>
+          <div class=colors>
+            <span class="red">restaurants (red dots)</span>&nbsp;,&nbsp;
+            <span class="green">bars (green dots)</span>&nbsp;,&nbsp;
+            <span class="blue">nightclubs (blue dots)</span>
+            <br><br>
+          </div>
         </div>
       </div>
-      <div id="hourSliderContainer">
-        <input type="range" min="0" max="23" value="0" class="slider" id="hourSlider">
+
+      <strong>You may also click on the dot to identify the establishment.</strong> <br><br>
+
+      <div class="controller">
+
+        <form id="day">
+          <div>Day of the Week</div>
+          <div class="day">
+            <input type="radio" id="Sunday" name="day" value="6" onclick="handleDay(this)" checked="checked">
+            <label for="sunday">Sunday</label>
+          </div>
+          <div class="day">
+            <input type="radio" id="Monday" name="day" value="0" onclick="handleDay(this,event)"><label for="monday"> Monday</label>
+          </div>
+          <div class="day">
+            <input type="radio" id="Tuesday" name="day" value="1" onclick="handleDay(this)">
+            <label for="tuesday">Tuesday</label>
+          </div>
+          <div class="day">
+            <input type="radio" id="Wednesday" name="day" value="2" onclick="handleDay(this)">
+            <label for="wednesday">Wednesday</label>
+          </div>
+          <div class="day">
+            <input type="radio" id="Thursday" name="day" value="3" onclick="handleDay(this)">
+            <label for="Thursday">Thursday</label>
+          </div>
+          <div class="day">
+            <input type="radio" id="Friday" name="day" value="4" onclick="handleDay(this)">
+            <label for="friday">Friday</label>
+          </div>
+          <div class="day">
+            <input type="radio" id="Saturday" name="day" value="5" onclick="handleDay(this)">
+            <label for="saturday">Saturday</label>
+          </div>
+        </form>
+
+        <div class="controller-sliders">
+          <div class="hour-controls-container">
+            <div class="">Hour (military time) : <span class="hour">00</span>:00</div>
+            <div class="hour-controls-buttons">
+              <button type="button" name="button" onclick="handlePlay()">play</button>
+              <button type="button" name="button" onclick="handlePause()">pause</button>
+            </div>
+          </div>
+          <div id="hourSliderContainer">
+            <input type="range" min="0" max="23" value="0" class="slider" id="hourSlider">
+          </div>
+
+          <div>Establishment Density: <span id="restDensity">20</span>%</div>
+          <div id="resturantDensitySliderContainer">
+            <input type="range" min="0" max="100" value="20" class="slider" id="resturantDensitySlider">
+          </div>
+          Note: The default density is set to 20% to support most devices.
+        </div>
       </div>
 
 
-
-
-      <br>
-      <div>Establishment Density: <span id="restDensity">20</span>%</div>
-      <div id="resturantDensitySliderContainer">
-        <input type="range" min="0" max="100" value="20" class="slider" id="resturantDensitySlider">
-      </div>
-      Note: The default density is set to 20% to support most devices.
-      <br><br>
-
-      The establishment data is pulled from Google's Places API.
 
       <div class="footer">
+        Establishment data is pulled from Google's Places API.
+        <br><br>
         If you'd like my project, and want to find out more about this project or what else I am working on, check my Github!
         <div class="footer-logos">
           <a class="fa fa-user-o" aria-hidden="true" href="http://mattyliu.com"></a>
@@ -163,6 +170,8 @@
           southWest: {lat:south, lng:west},
           northEast: {lat:north, lng:east},
         }
+        updateMap()
+
       })
 
       googleRestaurants.forEach((place) => {

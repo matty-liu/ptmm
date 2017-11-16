@@ -156,6 +156,7 @@ function updateCircle() {
 
     let radius = circle.populartimes[day].data[hour];
     radius = radius * 0.65;
+    // setTimeout(() => circle.setRadius(radius), 1)
     circle.setRadius(radius) // for non growing animation
 
     // what direction the radius changes
@@ -218,18 +219,28 @@ function contUpdateCircle() {
 }
 
 
+function updateMap() {
+  circles.forEach((circle, idx) => {
+
+    if (circle.position.lat > currentBounds.southWest.lat &&
+      circle.position.lat < currentBounds.northEast.lat &&
+      circle.position.lng > currentBounds.southWest.lng &&
+      circle.position.lng < currentBounds.northEast.lng) {
+      circle.setMap(map)
+    } else {
+      circle.setMap(null)
+    }
+  })
+}
 
 
-// function updateMap() {
-//   circles.forEach((circle, idx) => {
+
+
+
+
+
+
+
+
+
 //
-//     if (circle.position.lat > currentBounds.southWest.lat &&
-//       circle.position.lat < currentBounds.northEast.lat &&
-//       circle.position.lng > currentBounds.southWest.lng &&
-//       circle.position.lng < currentBounds.northEast.lng) {
-//       circle.setMap(map)
-//     } else {
-//       circle.setMap(null)
-//     }
-//   })
-// }
