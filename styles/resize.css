@@ -1,5 +1,5 @@
 /*above 1160*/
-@media screen and (min-width: 1160px) {
+@media screen and (min-width: 1175px) {
 
     body {
         display: flex;
@@ -28,7 +28,7 @@
 
 /*between 640 and 1160*/
 @media screen and
-  (max-width: 1160px) and
+  (max-width: 1175px) and
   (min-width: 1000px) {
 
     body {
