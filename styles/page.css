@@ -1,44 +1,41 @@
 
 .body {
   display: flex;
-  /*flex-direction: column;*/
   background-color: rgb(34,46,63);
   color: white;
   font-family: 'Anaheim', sans-serif;
 }
 
 #clock {
-  position: absolute;
+  position: fixed;
   color: white;
-  z-index: 3;
+  z-index: 10;
   margin: 20px 40px;
   font-size: 45px;
   font-weight: bold;
-  opacity: 50%;
+  /*opacity: 0%;*/
 }
 
-/*.left {
+.left {
   position: relative;
-  width: 45%;
-  margin: 40px;
-  font-family: 'Anaheim', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
 
+.description-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.left-title {
-  top: 0;
-  display: flex;
-  font-size: 40px;
-  font-weight: bold;
-  justify-content: center;
-}*/
+.description-text div {
+  margin: 10px;
+}
 
-  .left {
-    position: relative;
-  }
+.description-text-explanation button {
+  width: 100px;
+  margin: 0 6px;
+}
 
 .description-container {
   display: flex;
@@ -47,41 +44,16 @@
   height: auto;
 }
 
-.controller{
+.description-colors {
   display: flex;
-}
-
-#day {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
   justify-content: center;
-  align-items: left;
 }
 
-.day {
-  width: 100px;
-  margin: 0 10px;
-}
-
-.controller {
+.description-colors div {
   display: flex;
-}
+  justify-content: center;
+  margin: 4px;
 
-.controller-sliders {
-  display: flex;
-  flex-direction: column;
-}
-
-.hour-controls-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.hour-controls-buttons {
-  display: flex;
-  align-items: center;
 }
 
 button {
@@ -98,32 +70,6 @@ button {
 
   transition: 0.3s;
   transition-timing-function: linear;
-}
-
-button:hover {
-  cursor: pointer;
-  background-color: black;
-  color: white;
-}
-
-input:hover {
-  cursor: pointer;
-}
-
-input[type=range] {
-  margin: 10px;
-  width: 75%;
-}
-
-#hourSliderContainer {
-  display: flex;
-  justify-content: center;
-  height: auto;
-}
-
-#resturantDensitySliderContainer {
-  display: flex;
-  justify-content: center;
 }
 
 .infowindow {
@@ -153,11 +99,6 @@ input[type=range] {
 }
 .footer-logos a:hover {
   color: black;
-}
-
-.colors {
-  display: flex;
-  justify-content: center;
 }
 
 .red {

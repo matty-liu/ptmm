@@ -1,0 +1,59 @@
+.controller {
+  display: flex;
+  margin-top: 10px;
+}
+
+#day {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: left;
+}
+
+.day {
+  width: 100px;
+  margin: 0 10px;
+}
+
+.controller-sliders {
+  display: flex;
+  flex-direction: column;
+}
+
+.hour-controls-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hour-controls-buttons {
+  display: flex;
+  align-items: center;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: black;
+  color: white;
+}
+
+input:hover {
+  cursor: pointer;
+}
+
+input[type=range] {
+  margin: 10px;
+  width: 75%;
+}
+
+#hourSliderContainer {
+  display: flex;
+  justify-content: center;
+  height: auto;
+}
+
+#resturantDensitySliderContainer {
+  display: flex;
+  justify-content: center;
+}

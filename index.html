@@ -24,6 +24,8 @@
 
     <link href="https://fonts.googleapis.com/css?family=Anaheim" rel="stylesheet">
     <link rel="stylesheet" href="styles/page.css">
+    <link rel="stylesheet" href="styles/controller.css">
+    <link rel="stylesheet" href="styles/info-modal.css">
     <link rel="stylesheet" href="styles/resize.css">
     <script src="https://use.fontawesome.com/c3ae742dde.js"></script>
 
@@ -34,9 +36,15 @@
     <!-- Night Time Style of Map -->
     <script src="styles/map-styles-night.js"></script>
 
-    <div id="map">
-      <div id="clock"><span id="dayofweek">Monday</span> <span class="hour">00</span>:00</div>
+
+    <div id="clock">
+      <span id="dayofweek">Monday</span>
+      <span class="hour"> 00</span>:00
     </div>
+
+    <div id="map">
+    </div>
+
 
     <div class="left">
       <div class="left-title">The Populartimes - Manhattan</div>
@@ -44,17 +52,16 @@
 
       <div class="description-container">
 
-        <div class="description">Welcome to the the populartimes data visualization of Manhattan!
-          Each dot on the map represent an establishment in the Manhattan area. The size of each dot will change with respect to how busy the establishment is (relatively speaking) at the corresponding times that is indicated on the clock.  
-
-          The different colored dots represent the following establishment types:
-          <div class=colors>
-            <span class="red">restaurants (red dots)</span>&nbsp;,&nbsp;
-            <span class="green">bars (green dots)</span>&nbsp;,&nbsp;
-            <span class="blue">nightclubs (blue dots)</span>
-
+        <div class="description-text">
+          <div class="description-greeting">
+            Welcome to the the populartimes data visualization of Manhattan!
+          </div>
+          <div class="description-text-explanation">
+            Each dot on the map represent an establishment in the Manhattan area. Click the button to find out more about the dots!
+            <button id="infoModalButton">Info</button>
           </div>
         </div>
+
       </div>
 
       <strong>You may also click on the dot to identify the establishment.</strong>
@@ -111,8 +118,8 @@
           Note: The default density is set to 20% to support most devices.
         </div>
 
-        <div class="footer">
-          Establishment data is pulled from Google's Places API.
+        <div id="footer" class="footer">
+          Establishment data is pulled from Google's Places API. <br><br>
 
           If you'd like my project, and want to find out more about this project or what else I am working on, check my Github!
           <div class="footer-logos">
@@ -127,6 +134,37 @@
 
     </div>
 
+    <!-- The Modal -->
+    <div id="infoModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="info" class="description-dots">
+          The different colored dots represent the following establishment types:
+          <div class="description-colors">
+            <div class="red">
+              restaurants<br>(red dots)
+            </div>
+            <div class="green">
+              bars<br>(green dots)
+            </div>
+            <div class="blue">
+              nightclubs<br>(blue dots)
+            </div>
+            <div>
+
+            </div>
+          </div>
+          <div class="size">
+            The size of each dot will change with respect to how busy the establishment is (relatively speaking) at the corresponding time that is indicated on the clock. The "business" of a establishment is based off of Google Places API (the graph that tell you how busy a restaurant is and using that data we generate our visual). It should be noted that this is relatively speaking, so the dots are not always reflective of the amount of people in the area.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <script src="info-modal.js"></script>
 
     <!-- Resturant Data from Google Places -->
     <script src="data/places-manhat-data-restaurants.js"></script>
