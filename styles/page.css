@@ -6,20 +6,31 @@
   font-family: 'Anaheim', sans-serif;
 }
 
+
+
 #clock {
   position: fixed;
   color: white;
-  z-index: 10;
+  z-index: 1000000;
   margin: 20px 40px;
   font-size: 45px;
   font-weight: bold;
   /*opacity: 0%;*/
 }
 
+
 .left {
   position: relative;
   display: flex;
   flex-direction: column;
+  overflow: scroll;
+}
+
+
+.description-container {
+  border: 1px solid white;
+  padding: 8px;
+  border-radius: 2%;
 }
 
 .description-text {
@@ -29,31 +40,13 @@
 }
 
 .description-text div {
-  margin: 10px;
+}
+
+.description-text-explanation {
 }
 
 .description-text-explanation button {
-  width: 100px;
   margin: 0 6px;
-}
-
-.description-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: auto;
-}
-
-.description-colors {
-  display: flex;
-  justify-content: center;
-}
-
-.description-colors div {
-  display: flex;
-  justify-content: center;
-  margin: 4px;
-
 }
 
 button {
@@ -77,10 +70,10 @@ button {
 }
 
 .footer {
-  position: absolute;
+  padding-top: 10px;
+  margin-top: auto;
   bottom: 0;
-  padding: 1rem;
-  padding-bottom: 0
+  right: 0;
 }
 
 .footer-logos {
@@ -99,14 +92,4 @@ button {
 }
 .footer-logos a:hover {
   color: black;
-}
-
-.red {
-  color: red;
-}
-.blue {
-  color: blue;
-}
-.green {
-  color: green;
 }

@@ -36,14 +36,13 @@
     <!-- Night Time Style of Map -->
     <script src="styles/map-styles-night.js"></script>
 
-
-    <div id="clock">
-      <span id="dayofweek">Monday</span>
-      <span class="hour"> 00</span>:00
+    <div>
+      <div id="clock">
+        <span id="dayofweek">Sunday</span>
+        <span class="hour"> 00</span>:00
+      </div>
     </div>
-
-    <div id="map">
-    </div>
+    <div id="map"></div>
 
 
     <div class="left">
@@ -54,17 +53,23 @@
 
         <div class="description-text">
           <div class="description-greeting">
-            Welcome to the the populartimes data visualization of Manhattan!
+            Welcome to the the Populartimes Manhattan!
+            <br><br>
+            The populartimes is a data visualization of how busy establishments are (i.e. resturants, bars, nightclubs).
+            <br><br>
+            Each dot represents a establishment and by using data from Google Places API, the dots will change size based on how busy the establishment is.
+            <br><br>
+            Click the button to find out more!
+            <button id="infoModalButton">Info</button>
+            <br><br>
+            You may also click on a dot to identify the establishment.
           </div>
           <div class="description-text-explanation">
-            Each dot on the map represent an establishment in the Manhattan area. Click the button to find out more about the dots!
-            <button id="infoModalButton">Info</button>
+
           </div>
         </div>
-
       </div>
 
-      <strong>You may also click on the dot to identify the establishment.</strong>
 
       <div class="controller">
 
@@ -115,19 +120,20 @@
           <div id="resturantDensitySliderContainer">
             <input type="range" min="0" max="100" value="20" class="slider" id="resturantDensitySlider">
           </div>
-          Note: The default density is set to 20% to support most devices.
+          <div>Note: The default density is set to 20% to support most devices.</div>
         </div>
 
-        <div id="footer" class="footer">
-          Establishment data is pulled from Google's Places API. <br><br>
+      </div>
 
-          If you'd like my project, and want to find out more about this project or what else I am working on, check my Github!
-          <div class="footer-logos">
-            <a class="fa fa-user-o" aria-hidden="true" href="http://mattyliu.com"></a>
-            <a class="fa fa-github" aria-hidden="true" href="https://github.com/matty-liu"></a>
-            <a class="fa fa-linkedin-square" aria-hidden="true" href="https://www.linkedin.com/in/matthew-liuu/"></a>
-            <a class="fa fa-envelope" aria-hidden="true" href="mailto:mattkliu@gmail.com"></a>
-          </div>
+      <div id="footer" class="footer">
+        Establishment data is pulled from Google's Places API.
+        <br><br>
+        If you'd like my project, and want to find out more about this project or what else I am working on, check my Github!
+        <div class="footer-logos">
+          <a class="fa fa-user-o" aria-hidden="true" href="http://mattyliu.com"></a>
+          <a class="fa fa-github" aria-hidden="true" href="https://github.com/matty-liu"></a>
+          <a class="fa fa-linkedin-square" aria-hidden="true" href="https://www.linkedin.com/in/matthew-liuu/"></a>
+          <a class="fa fa-envelope" aria-hidden="true" href="mailto:mattkliu@gmail.com"></a>
         </div>
 
       </div>
@@ -141,23 +147,29 @@
       <div class="modal-content">
         <span class="close">&times;</span>
         <div id="info" class="description-dots">
-          The different colored dots represent the following establishment types:
           <div class="description-colors">
-            <div class="red">
-              restaurants<br>(red dots)
-            </div>
-            <div class="green">
-              bars<br>(green dots)
-            </div>
-            <div class="blue">
-              nightclubs<br>(blue dots)
-            </div>
-            <div>
-
+            <img src="dots.png">
+            <div class="description-colors-dots">
+              <span class="description-colors-dots-text">
+              The different colored dots represent the following establishment types:
+            </span>
+              <div class="red">
+                restaurants<br>(red dots)
+              </div>
+              <div class="green">
+                bars<br>(green dots)
+              </div>
+              <div class="blue">
+                nightclubs<br>(blue dots)
+              </div>
             </div>
           </div>
           <div class="size">
-            The size of each dot will change with respect to how busy the establishment is (relatively speaking) at the corresponding time that is indicated on the clock. The "business" of a establishment is based off of Google Places API (the graph that tell you how busy a restaurant is and using that data we generate our visual). It should be noted that this is relatively speaking, so the dots are not always reflective of the amount of people in the area.
+            <span>The size or "business" of a establishment is based off of Google Places API.</span>
+            <div class="description-populartimes">
+              <img src="populartimes.png" class="populartimes-img">
+            </div>
+            It should be noted that this is relatively speaking, so the dots are not always reflective of the amount of people in the area.
           </div>
         </div>
       </div>
@@ -184,9 +196,9 @@
 
     <!-- Map and data point generation -->
     <script>
-    console.log(googleRestaurants)
-    console.log(googleBars)
-    console.log(googleNightclub)
+    // console.log(googleRestaurants)
+    // console.log(googleBars)
+    // console.log(googleNightclub)
 
     let map;
     let circles = [];
@@ -203,7 +215,7 @@
       });
 
       google.maps.event.addListener(map, 'idle', () => {
-        console.log("bounds have changed!")
+        // console.log("bounds have changed!")
         const {north,south,east,west} = map.getBounds().toJSON()
         currentBounds = {
           southWest: {lat:south, lng:west},

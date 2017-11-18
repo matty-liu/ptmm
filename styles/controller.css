@@ -1,6 +1,10 @@
 .controller {
   display: flex;
   margin-top: 10px;
+  border: 1px solid white;
+  padding: 8px;
+  border-radius: 2%;
+  justify-content: space-between;
 }
 
 #day {

@@ -4,11 +4,10 @@
   body {
     display: flex;
     flex-direction: row;
-    justify-content: center;
   }
 
   .left {
-    width: 500px;
+    width: 45%;
     margin: 40px;
 
     display: flex;
@@ -21,13 +20,14 @@
     font-size: 40px;
     font-weight: bold;
     justify-content: center;
+    margin-bottom: 30px;
   }
 
 }
 
 /*between 640 and 1160*/
 @media screen and
-  (max-width: 1175px) and
+  (max-width: 1250px) and
   (min-width: 950px) {
 
   body {
@@ -36,7 +36,7 @@
   }
 
   .left {
-    width: 400px;
+    width: 45%;
     margin: 20px;
 
     display: flex;
@@ -49,6 +49,7 @@
     font-size: 32px;
     font-weight: bold;
     justify-content: center;
+    margin-bottom: 20px;
   }
 
 }
@@ -70,6 +71,7 @@
 
   .left{
     width: 400px;
+    min-width: 400px;
     height: auto;
     margin: 20px;
     justify-content: center;
@@ -84,7 +86,6 @@
   }
 
   .description-text div {
-    margin: 10px;
     min-width: 400px;
   }
 

@@ -10,16 +10,19 @@
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   justify-content: center;
+  align-items: center;
 }
 
 /* Modal Content/Box */
 .modal-content {
   background-color: rgb(34,46,63);
-  margin: 10% 10%;
+  width: 400px;
+  height: 500px;
   padding: 20px;
   border: 1px solid #888;
   max-width: 400px;/
   height: 70%;
+  overflow: scroll;
 }
 
 /* The Close Button */
@@ -35,4 +38,54 @@
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.description-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: auto;
+}
+
+.description-colors {
+  display: flex;
+  justify-content: center;
+}
+
+.description-colors-dots-text {
+  padding-left: 20px;
+}
+
+.description-colors-dots div {
+  display: flex;
+  justify-content: center;
+}
+
+.red {
+  color: red;
+}
+.blue {
+  color: blue;
+}
+.green {
+  color: green;
+}
+
+.description-populartimes {
+  display: flex;
+  justify-content: center;
+}
+
+.description-colors {
+  display: flex;
+}
+
+.description-colors-dots {
+  display: flex;
+  flex-direction: column;
+  /*justify-content: center;*/
+}
+
+.populartimes-img {
+  transform: scale(0.8,0.8);
 }
