@@ -59,7 +59,7 @@
           <div class="description-greeting">
             Welcome to the the Populartimes Manhattan!
             <br><br>
-            The populartimes is a data visualization of how busy establishments are (i.e. resturants, bars, nightclubs).
+            The populartimes is a data visualization of how busy establishments get (i.e. resturants, bars, nightclubs).
             <br><br>
             Each dot represents a establishment and by using data from Google Places API, the dots will change size based on how busy the establishment is.
             <br><br>
@@ -152,7 +152,7 @@
         <span class="close">&times;</span>
         <div id="info" class="description-dots">
           <div class="description-colors">
-            <img src="dots.png">
+            <img src="img/dots.png">
             <div class="description-colors-dots">
               <span class="description-colors-dots-text">
               The different colored dots represent the following establishment types:
@@ -171,7 +171,7 @@
           <div class="size">
             <span>The size or "business" of a establishment is based off of Google Places API.</span>
             <div class="description-populartimes">
-              <img src="populartimes.png" class="populartimes-img">
+              <img src="img/populartimes.png" class="populartimes-img">
             </div>
             It should be noted that this is relatively speaking, so the dots are not always reflective of the amount of people in the area.
           </div>
@@ -266,9 +266,6 @@
         })
         circles.push(circle)
 
-        // const heatMapPoint = { location: new google.maps.LatLng(place.coordinates.lat, place.coordinates.lng), weight: 0 }
-        // heatMapData.push(heatMapPoint)
-
       })
 
       googleBars.forEach((place) => {
@@ -358,6 +355,9 @@
         circles.push(circle)
 
       })
+
+      // const heatMapPoint = { location: new google.maps.LatLng(place.coordinates.lat, place.coordinates.lng), weight: 0 }
+      // heatMapData.push(heatMapPoint)
 
       //
       // let heatmap = new google.maps.visualization.HeatmapLayer({
