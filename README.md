@@ -19,7 +19,7 @@ Restaurants (red), Bars (green), Night Clubs (blue).
 
 ## Implementation
 
-The populartimes is built first by creating a Google Map object. The Google Maps API allows us to append marker objects with latitude and longitude coordinates on the Map object we created. The markers(circles) can then be appended at specific locations where the restaurant is located on within the map object.
+The populartimes is built first by creating a Google Map object.
 
 ```JavaScript
 let map;
@@ -34,11 +34,15 @@ function initMap() {
 }
 ```
 
-The coordinates of each establishment is grabbed from Google's Places API. In the Google Place's API call, we fetch all of the establishment data in Google Places and filter out the specific businesses we want (i.e. restaurants, bars, night clubs). In the API response, we receive the establishment data and inside that response is a populartimes object which stores all of the customer traffic data at the different times of day and day of the week.
+Before we can populate the Map object with the data we need to fetch the establishment data from the Google Places API. The response from the API call will provide us with the type of establishment we call for (i.e. restaurant, bar, night club), the location of the establishment (latitude/longitude coordinates), the name of the establishment, and the populartimes object which stores all of the customer traffic data at the different times of day and day of the week.
 
-The populartimes data is an object which contains a key of day (as an integer i.e. 0 is Monday, 1 is Tuesday, etc.) and it points to an array of value ranging from 0 to 100, with 0 being closed and 100 being full capacity and the indexes of the array corresponding to the hour (i.e. 0 is 12:00AM, 11 is 12:00PM, etc.)
+```python
+populartimes.get( "apikey", ["restaurant"], (40.749816, -73.987743), (40.753442, -73.980948))
+# Returns 111 location between the listed coordinates.
+# Example response #=> [{'id': 'ChIJqVQEsABZwokRe05WcVpIuFc', 'name': 'Evergreen Shanghai', 'address': '10 E 38th St, New York, NY 10016, USA', 'searchterm': 'Evergreen Shanghai 10 E 38th St, New York, NY 10016, USA', 'types': ['restaurant', 'food', 'point_of_interest', 'establishment'], 'coordinates': {'lat': 40.750444, 'lng': -73.98198}, 'rating': 3.8, 'rating_n': 74, 'international_phone_number': '+1 212-448-1199', 'populartimes': [{'name': 'Monday', 'data': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 29, 49, 50, 35, 15, 9, 25, 52, 58, 37, 13, 0, 0]}],
+```
 
-Once the data has been fetched, we store all the data in a seperate file so that we do not have to fetch for the establishment information again. With all the information we have now, we finally can populate the map. We iterate through our data, and for each establishment, we create a Marker object, append the place's coordinates, apply a color based the establishment type (i.e. restaurant, bar, night club), and a radius size (default to 1 which appears as a dot).
+Once the data has been fetched, we store all the data in a separate file so that we do not have to fetch for the establishment information again. With all the stored information, we now populate the map. We iterate through our data, and for each establishment, we create a Marker object, append the place's coordinates, apply a color based on the establishment type, and a radius size (default to 1 which appears as a dot).
 
 ```JavaScript
 let circles = [];
@@ -61,29 +65,30 @@ googleRestaurants.forEach((place) => {
   circles.push(circle)
 ```
 
-To dynamically update the map, all we do is call and update method whenever a user action is dected. We reiterate through the circles, and change the radius size of the point depending on the time of day and day of the week and as a result the circle object is changed on the map as well.
+To dynamically update the map, all we do is call and update method whenever a user action is detected. We reiterate through the circles, and change the radius size of the point depending on the time of day and day of the week and as a result the circle's radius is changed on the map as well.
 
 ```JavaScript
 function updateCircle() {
-  console.log("updating")
-
   circles.forEach( (circle, idx) => {
     let radius = circle.populartimes[day].data[hour];
     radius = radius * 0.65;
     circle.setRadius(radius) // for non growing animation
   });
-
-  hourSlider.value = hour;
 }
 ```
 
 
 ## Todos/Future Implementation
-1. Cross reference populartimes data with New York City building capacity data to render dot sizes that correspond to the amount of people in an area.
+1. Cross reference populartimes data with New York City building capacity data to render dot sizes that correspond to the amount of people in an area as opposed to relative business.
 
 2. Add additional establishment types (cafes, gym, etc..) for more trends.
 
-3. Implement heatmap
+3. Seek if there is optimization that can be done (difficult if running visual at 100% establishment density)
+
+4. Implement heatmap visual
+
+
+
 
 
 
