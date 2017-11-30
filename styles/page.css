@@ -7,7 +7,6 @@
 }
 
 
-
 #clock {
   position: fixed;
   color: white;
@@ -23,7 +22,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  overflow: hidden;
 }
 
 
