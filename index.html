@@ -78,34 +78,52 @@
       <div class="controller">
 
         <form id="day">
+
           <div>Day of the Week</div>
-          <div class="day">
-            <input type="radio" id="Sunday" name="day" value="6" onclick="handleDay(this)" checked="checked">
-            <label for="sunday">Sunday</label>
-          </div>
-          <div class="day">
-            <input type="radio" id="Monday" name="day" value="0" onclick="handleDay(this,event)"><label for="monday"> Monday</label>
-          </div>
-          <div class="day">
-            <input type="radio" id="Tuesday" name="day" value="1" onclick="handleDay(this)">
-            <label for="tuesday">Tuesday</label>
-          </div>
-          <div class="day">
-            <input type="radio" id="Wednesday" name="day" value="2" onclick="handleDay(this)">
-            <label for="wednesday">Wednesday</label>
-          </div>
-          <div class="day">
-            <input type="radio" id="Thursday" name="day" value="3" onclick="handleDay(this)">
-            <label for="Thursday">Thursday</label>
-          </div>
-          <div class="day">
-            <input type="radio" id="Friday" name="day" value="4" onclick="handleDay(this)">
-            <label for="friday">Friday</label>
-          </div>
-          <div class="day">
-            <input type="radio" id="Saturday" name="day" value="5" onclick="handleDay(this)">
-            <label for="saturday">Saturday</label>
-          </div>
+
+            <div class="day">
+              <input type="radio" id="sunday" name="day" value="6" onclick="handleDay(this)" checked="checked">
+              <label for="sunday">
+              <div class="check"></div>
+              Sunday</label>
+            </div>
+
+            <div class="day">
+              <input type="radio" id="monday" name="day" value="0" onclick="handleDay(this)">
+              <div class="check"></div>
+              <label for="monday"> Monday</label>
+            </div>
+
+            <div class="day">
+              <input type="radio" id="tuesday" name="day" value="1" onclick="handleDay(this)">
+              <div class="check"></div>
+              <label for="tuesday">Tuesday</label>
+            </div>
+
+            <div class="day">
+              <input type="radio" id="wednesday" name="day" value="2" onclick="handleDay(this)">
+              <div class="check"></div>
+              <label for="wednesday">Wednesday</label>
+            </div>
+
+            <div class="day">
+              <input type="radio" id="thursday" name="day" value="3" onclick="handleDay(this)">
+              <div class="check"></div>
+              <label for="thursday">Thursday</label>
+            </div>
+
+            <div class="day">
+              <input type="radio" id="friday" name="day" value="4" onclick="handleDay(this)">
+              <div class="check"></div>
+              <label for="friday">Friday</label>
+            </div>
+
+            <div class="day">
+              <input type="radio" id="saturday" name="day" value="5" onclick="handleDay(this)">
+              <div class="check"></div>
+              <label for="saturday">Saturday</label>
+            </div>
+
         </form>
 
         <div class="controller-sliders">
@@ -207,6 +225,8 @@
     let map;
     let circles = [];
     let currentBounds;
+
+
 
     function initMap() {
 
