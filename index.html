@@ -52,20 +52,21 @@
     <div class="left">
       <div class="left-title">The Populartimes - Manhattan</div>
 
-
       <div class="description-container">
 
         <div class="description-text">
           <div class="description-greeting">
             Welcome to the the Populartimes Manhattan!
             <br><br>
-            The populartimes is a data visualization of how busy establishments get (i.e. resturants, bars, nightclubs).
+            The populartimes is a visualization of how busy an establishments gets at various times within the day for different days of the week.
             <br><br>
-            Each dot represents a establishment and by using data from Google Places API, the dots will change size based on how busy the establishment is.
+            Each dot on the map represents a different establishment (i.e. resturants, bars, nightclubs), and by coupling that with Google Places API data, we dynamically change the size of the dots based on how busy an establishment is at the specified time and date!
+
             <br><br>
-            Click the button to find out more!
+            Click the info button to find out more about the dots!
             <button id="infoModalButton">Info</button>
             <br><br>
+            Hit the play button in the controller below to see the dynamic updating!
             You may also click on a dot to identify the establishment.
           </div>
           <div class="description-text-explanation">
@@ -84,44 +85,57 @@
             <div class="day">
               <input type="radio" id="sunday" name="day" value="6" onclick="handleDay(this)" checked="checked">
               <label for="sunday">
-              <div class="check"></div>
-              Sunday</label>
+                <div class="check"></div>
+                &nbspSunday
+              </label>
             </div>
 
             <div class="day">
               <input type="radio" id="monday" name="day" value="0" onclick="handleDay(this)">
-              <div class="check"></div>
-              <label for="monday"> Monday</label>
+              <label for="monday">
+                <div class="check"></div>
+                &nbspMonday
+              </label>
             </div>
 
             <div class="day">
               <input type="radio" id="tuesday" name="day" value="1" onclick="handleDay(this)">
-              <div class="check"></div>
-              <label for="tuesday">Tuesday</label>
+              <label for="tuesday">
+                <div class="check"></div>
+                &nbspTuesday
+              </label>
             </div>
 
             <div class="day">
               <input type="radio" id="wednesday" name="day" value="2" onclick="handleDay(this)">
-              <div class="check"></div>
-              <label for="wednesday">Wednesday</label>
+              <label for="wednesday">
+                <div class="check"></div>
+                &nbspWednesday
+              </label>
             </div>
 
             <div class="day">
               <input type="radio" id="thursday" name="day" value="3" onclick="handleDay(this)">
-              <div class="check"></div>
-              <label for="thursday">Thursday</label>
+              <label for="thursday">
+                <div class="check"></div>
+                &nbspThursday
+              </label>
             </div>
 
             <div class="day">
               <input type="radio" id="friday" name="day" value="4" onclick="handleDay(this)">
-              <div class="check"></div>
-              <label for="friday">Friday</label>
+              <label for="friday">
+                <div class="check"></div>
+                &nbspFriday
+              </label>
             </div>
 
             <div class="day">
               <input type="radio" id="saturday" name="day" value="5" onclick="handleDay(this)">
-              <div class="check"></div>
-              <label for="saturday">Saturday</label>
+              <label for="saturday">
+                <div class="check"></div>
+                &nbspSaturday
+              </label>
             </div>
 
         </form>
