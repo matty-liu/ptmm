@@ -96,7 +96,7 @@ function handleDay(day) {
 
   // if not user generated click, update radio button
   if (!(event)) {
-    document.getElementById(dayname).click()
+    document.getElementById(dayname.toLowerCase()).click()
   }
 
   // update day HTML on map

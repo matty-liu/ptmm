@@ -4,8 +4,8 @@
   background-color: rgb(34,46,63);
   color: white;
   font-family: 'Anaheim', sans-serif;
+  overflow: scroll;
 }
-
 
 #clock {
   position: fixed;
@@ -14,17 +14,50 @@
   margin: 20px 40px;
   font-size: 45px;
   font-weight: bold;
-  /*opacity: 0%;*/
+
+  animation: fade 3s linear;
 }
 
+@keyframes fade {
+  0% { opacity: 0 }
+  100% { opacity: 1 }
+}
+
+#legend {
+  display: flex;
+  color: white;
+  flex-direction: column;
+  padding: 0 6px;
+}
+
+.legend-title {
+  margin-top: 6px;
+}
+
+.legend-dots {
+  display: flex;
+  margin: 1px 0;
+}
+
+.legend-dots div {
+  display: flex;
+  align-items: center;
+  padding-bottom: 2px;
+  padding-left: 4px;
+}
+
+.legend-dots img {
+  object-fit: none;
+  display: flex;
+  transform: scale(0.7);
+}
 
 .left {
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: scroll;
 }
-
 
 .description-container {
   border: 1px solid white;

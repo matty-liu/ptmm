@@ -5,7 +5,7 @@
 
     <link rel="icon"
       type="image/png"
-      href="favicon-populartimes1.png">
+      href="img/favicon-populartimes1.png">
 
     <title>Populartimes Manhattan</title>
 
@@ -15,9 +15,19 @@
 
     <style>
       #map {
-          height: 100vh;
-          width: 55%;
-        }
+        height: 100vh;
+        width: 55%;
+      }
+
+      #legend {
+        font-family: Arial, sans-serif;
+        background: rgb(34,46,63);
+        color: black;
+        padding: 5px;
+        margin: 10px;
+        border: 3px solid rgb(118,105,82);
+      }
+
       html, body {
         height: auto;
         width: 100vw;
@@ -46,8 +56,27 @@
         <span class="hour"> 00</span>:00
       </div>
     </div>
-    <div id="map"></div>
 
+    <div id="map"></div>
+    <div id="legend">
+      <div class="legend-title">
+        <div>Legend</div>
+      </div>
+      <div class =legend-body>
+        <div class=legend-dots>
+          <img src="img/red-dot.png" class="legend-dot">
+          <div class="red">restaurants</div>
+        </div>
+        <div class=legend-dots>
+          <img src="img/green-dot.png" class="legend-dot">
+          <div class="green">bars</div>
+        </div>
+        <div class=legend-dots>
+          <img src="img/blue-dot.png" class="legend-dot">
+          <div class="blue">nightclubs</div>
+        </div>
+      </div>
+    </div>
 
     <div class="left">
       <div class="left-title">The Populartimes - Manhattan</div>
@@ -56,11 +85,11 @@
 
         <div class="description-text">
           <div class="description-greeting">
-            Welcome to the the Populartimes Manhattan!
+            Welcome to the the Populartimes: Manhattan Edition!
             <br><br>
-            The populartimes is a visualization of how busy an establishments gets at various times within the day for different days of the week.
+            The populartimes is a visualization of customer traffic at an establishments throughout the times of day.
             <br><br>
-            Each dot on the map represents a different establishment (i.e. resturants, bars, nightclubs), and by coupling that with Google Places API data, we dynamically change the size of the dots based on how busy an establishment is at the specified time and date!
+            Each dot on the map represents a different establishment (i.e. <span class="red">resturants</span>, <span class="green">bars</span>, <span class="blue">nightclubs</span>), and by coupling the dots with Google Places API data, we can visually see how customer traffic in an establishment changes over time!
 
             <br><br>
             Click the info button to find out more about the dots!
@@ -223,6 +252,7 @@
     <script src="data/places-manhat-data-restaurants6.js"></script>
     <!-- Bar+Nightclub Data from Google Places -->
     <script src="data/places-manhat-data-bars1.js"></script>
+    <script src="data/places-manhat-data-bars2.js"></script>
     <script src="data/places-manhat-data-nightclub1.js"></script>
 
     <!-- Data combined and bound to a variable named
@@ -239,8 +269,6 @@
     let map;
     let circles = [];
     let currentBounds;
-
-
 
     function initMap() {
 
@@ -389,6 +417,9 @@
         circles.push(circle)
 
       })
+
+      var legend = document.getElementById('legend');
+      map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend);
 
       // const heatMapPoint = { location: new google.maps.LatLng(place.coordinates.lat, place.coordinates.lng), weight: 0 }
       // heatMapData.push(heatMapPoint)
