@@ -89,13 +89,13 @@
             <br><br>
             The Populartimes: Manhattan Edition is a visualization of customer traffic within various establishments throughout lower/middle Manhattan during various times of the day and days of the week.
             <br><br>
-            Each dot on the map represents a different establishment (i.e. <span class="red">resturants</span>, <span class="green">bars</span>, <span class="blue">nightclubs</span>), and by coupling the dots with Google Places API data, we can visually see how customer traffic in an establishment changes over time!
+            Each dot on the map represents a different establishment (i.e. <span class="red">resturants</span>, <span class="green">bars</span>, <span class="blue">nightclubs</span>), and by coupling the dots with data from Google Places API, we can visually see how customer traffic at an establishment changes over time.
 
             <br><br>
             Click the info button to find out more about the dots!
             <button id="infoModalButton">Info</button>
             <br><br>
-            Hit the play button in the controller below to see the dynamic updating!
+            Hit the play button in the controller below to let the clock play through time.
             You may also click on a dot to identify the establishment.
           </div>
           <div class="description-text-explanation">
@@ -280,14 +280,14 @@
         zoomControl: true,
       });
 
-      google.maps.event.addListener(map, 'idle', () => {
-        // console.log("bounds have changed!")
-        const {north,south,east,west} = map.getBounds().toJSON()
-        currentBounds = {
-          southWest: {lat:south, lng:west},
-          northEast: {lat:north, lng:east},
-        }
-      })
+      // google.maps.event.addListener(map, 'idle', () => {
+      //   console.log("bounds have changed!")
+      //   const {north,south,east,west} = map.getBounds().toJSON()
+      //   currentBounds = {
+      //     southWest: {lat:south, lng:west},
+      //     northEast: {lat:north, lng:east},
+      //   }
+      // })
 
       googleRestaurants.forEach((place) => {
         const circle = new google.maps.Circle({
@@ -326,6 +326,7 @@
         circle.addListener('click', () => {
           infowindow.open(map,circle);
         })
+
         circles.push(circle)
 
       })
@@ -392,8 +393,7 @@
         let chance = 20;
         let randNum = Math.random()*100;
 
-        if (randNum <= chance) {
-        } else {
+        if (randNum >= chance) {
           circle.setMap(null)
         }
 
@@ -413,6 +413,10 @@
         circle.addListener('click', () => {
           infowindow.open(map,circle);
         })
+
+        google.maps.event.addListener(map, 'click', () {
+          infowindow.close();
+        });
 
         circles.push(circle)
 
