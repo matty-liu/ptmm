@@ -8,8 +8,7 @@
 
   .left {
     width: 45%;
-    margin: 40px;
-
+    margin: 20px;
     display: flex;
     flex-direction: column;
   }
@@ -20,7 +19,6 @@
     font-size: 40px;
     font-weight: bold;
     justify-content: center;
-    margin-bottom: 30px;
   }
 
 }
