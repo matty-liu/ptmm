@@ -10,6 +10,14 @@ let googleBars = bars1
 googleBars = googleBars.concat(bars2)
 googleBars = googleBars.concat(bars3)
 
-let googleNightclub = googleNightclub1
-googleNightclub = googleNightclub.concat(googleNightclub2)
-googleNightclub = googleNightclub.concat(googleNightclub3)
+let googleNightclubs = googleNightclubs1
+googleNightclubs = googleNightclubs.concat(googleNightclubs2)
+googleNightclubs = googleNightclubs.concat(googleNightclubs3)
+
+let googleCafes = googleCafes1
+googleCafes = googleCafes.concat(googleCafes2)
+googleCafes = googleCafes.concat(googleCafes3)
+
+let googleGyms = googleGyms1
+googleGyms = googleGyms.concat(googleGyms2)
+googleGyms = googleGyms.concat(googleGyms3)

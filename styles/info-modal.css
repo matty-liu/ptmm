@@ -78,6 +78,12 @@
 .green {
   color: green;
 }
+.orange {
+  color: orange;
+}
+.purple {
+  color: purple;
+}
 
 .description-populartimes {
   display: flex;

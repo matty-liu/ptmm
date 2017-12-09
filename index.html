@@ -58,6 +58,7 @@
     </div>
 
     <div id="map"></div>
+
     <div id="legend">
       <div class="legend-title">
         <div>Legend</div>
@@ -75,6 +76,14 @@
           <img src="img/blue-dot.png" class="legend-dot">
           <div class="blue">nightclubs</div>
         </div>
+        <div class=legend-dots>
+          <img src="img/orange-dot.png" class="legend-dot">
+          <div class="orange">cafes</div>
+        </div>
+        <div class=legend-dots>
+          <img src="img/purple-dot.png" class="legend-dot">
+          <div class="purple">gyms</div>
+        </div>
       </div>
     </div>
 
@@ -89,14 +98,11 @@
             <br><br>
             The Populartimes: Manhattan Edition is a visualization of customer traffic within various establishments throughout lower/middle Manhattan during various times of the day and days of the week.
             <br><br>
-            Each dot on the map represents a different establishment (i.e. <span class="red">resturants</span>, <span class="green">bars</span>, <span class="blue">nightclubs</span>), and by coupling the dots with data from Google Places API, we can visually see how customer traffic at an establishment changes over time.
+            Each dot on the map represents a different establishment type <br>(i.e. <span class="red">resturants</span>, <span class="green">bars</span>, <span class="blue">nightclubs</span>, <span class="orange">cafes</span>, <span class="purple">gyms</span>)<br> and by coupling the dots with data from Google Places API, we can visually see how customer traffic at an establishment changes over time.
 
             <br><br>
             Click the info button to find out more about the dots!
             <button id="infoModalButton">Info</button>
-            <br><br>
-            Hit the play button in the controller below to let the clock play through time.
-            You may also click on a dot to identify the establishment.
           </div>
           <div class="description-text-explanation">
 
@@ -185,13 +191,14 @@
           <div id="resturantDensitySliderContainer">
             <input type="range" min="0" max="100" value="20" class="slider" id="resturantDensitySlider">
           </div>
-          <div>Note: The default density is set to 20% to support most devices.</div>
+          <div>Note: The default density is set to 20% to support most devices. For mobile devices, set density to < 10%
+          </div>
         </div>
 
       </div>
 
       <div id="footer" class="footer">
-        Establishment data is pulled from Google's Places API.
+        Establishment data is prefetched and pulled from Google's Places API.
         <br><br>
         If you'd like my project, and want to find out more about this project or what else I am working on, check my Github!
         <div class="footer-logos">
@@ -222,6 +229,8 @@
                 <div class="red">restaurants<br>(red dots)</div>
                 <div class="green">bars<br>(green dots)</div>
                 <div class="blue">nightclubs<br>(blue dots)</div>
+                <div class="orange">cafes<br>(orange dots)</div>
+                <div class="purple">gyms<br>(purple dots)</div>
               </div>
             </div>
           </div>
@@ -241,7 +250,7 @@
 
     </div>
 
-    <script src="info-modal.js"></script>
+    <script src="modal.js"></script>
 
     <!-- Resturant Data from Google Places -->
     <script src="data/places-manhat-data-restaurants.js"></script>
@@ -251,181 +260,32 @@
     <script src="data/places-manhat-data-restaurants5.js"></script>
     <script src="data/places-manhat-data-restaurants6.js"></script>
     <script src="data/places-manhat-data-rest3.js"></script>
-    <!-- Bar+Nightclub Data from Google Places -->
+
+    <!-- Bar Data from Google Places -->
     <script src="data/places-manhat-data-bars1.js"></script>
     <script src="data/places-manhat-data-bars2.js"></script>
     <script src="data/places-manhat-data-bars3.js"></script>
 
-    <script src="data/places-manhat-data-nightclub1.js"></script>
-    <script src="data/places-manhat-data-nightclub2.js"></script>
-    <script src="data/places-manhat-data-nightclub3.js"></script>
+    <!-- Nightclub Data from Google Places -->
+    <script src="data/places-manhat-data-nightclubs1.js"></script>
+    <script src="data/places-manhat-data-nightclubs2.js"></script>
+    <script src="data/places-manhat-data-nightclubs3.js"></script>
+
+    <!-- Cafe Data from Google Places -->
+    <script src="data/places-manhat-data-cafes1.js"></script>
+    <script src="data/places-manhat-data-cafes2.js"></script>
+    <script src="data/places-manhat-data-cafes3.js"></script>
+
+    <!-- Gym Data from Google Places -->
+    <script src="data/places-manhat-data-gyms1.js"></script>
+    <script src="data/places-manhat-data-gyms2.js"></script>
+    <script src="data/places-manhat-data-gyms3.js"></script>
 
     <!-- Combined data above -->
     <script src="data/places-manhat-data-join.js"></script>
 
-    <!-- Map and data point generation -->
-    <script>
-      // console.log(googleRestaurants)
-      // console.log(googleBars)
-      // console.log(googleNightclub)
-
-      let map;
-      let circles = [];
-
-      function initMap() {
-
-        map = new google.maps.Map(document.getElementById('map'), {
-          disableDefaultUI: true,
-          center: {lat: 40.73318067925024, lng: -73.99484466674808},
-          zoom: 13,
-          styles: nightStyles,
-          zoomControl: true,
-        });
-
-        googleRestaurants.forEach((place) => {
-          const circle = new google.maps.Circle({
-            strokeColor: '#FF0000',
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#FF0000',
-            fillOpacity: 0.35,
-            map: map,
-            center: place.coordinates,
-            radius: 1,
-            radiusPrev: 1,
-            populartimes: place.populartimes,
-            position: place.coordinates,
-          })
-
-          let chance = 20;
-          let randNum = Math.random()*100;
-          if (randNum <= chance) {
-          } else {
-            circle.setMap(null)
-          }
-
-          const contentString =
-          `<div class="infowindow">`+
-            `<div>Name: ${place.name}<div>`+
-            `<div>Address: ${place.address}<div>`+
-            `<div>Phone Number: ${place.international_phone_number}<div>`+
-            `<div>Rating: ${place.rating}<div>`+
-            `<div>Number of Ratings: ${place.rating_n}<div>`+
-          `</div>`;
-          const infowindow = new google.maps.InfoWindow({
-            content: contentString
-          })
-
-          circle.addListener('click', () => {
-            infowindow.open(map,circle);
-          })
-
-          circles.push(circle)
-
-        })
-
-        googleBars.forEach((place) => {
-
-          const circle = new google.maps.Circle({
-            strokeColor: '#00FF00',
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#00FF00',
-            fillOpacity: 0.35,
-            map: map,
-            center: place.coordinates,
-            radius: 1,
-            populartimes: place.populartimes,
-            position: place.coordinates,
-          })
-
-          let chance = 20;
-          let randNum = Math.random()*100;
-
-          if (randNum <= chance) {
-          } else {
-            circle.setMap(null)
-          }
-
-          const contentString =
-          `<div class="infowindow">`+
-            `<div>Name: ${place.name}<div>`+
-            `<div>Address: ${place.address}<div>`+
-            `<div>Phone Number: ${place.international_phone_number}<div>`+
-            `<div>Rating: ${place.rating}<div>`+
-            `<div>Number of Ratings: ${place.rating_n}<div>`+
-          `</div>`;
-
-          const infowindow = new google.maps.InfoWindow({
-            content: contentString
-          })
-
-          circle.addListener('click', () => {
-            infowindow.open(map,circle);
-          })
-
-          circles.push(circle)
-
-        })
-
-        googleNightclub.forEach((place) => {
-
-          const circle = new google.maps.Circle({
-            strokeColor: '#0000FF',
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#0000FF',
-            fillOpacity: 0.35,
-            map: map,
-            center: place.coordinates,
-            radius: 1,
-            populartimes: place.populartimes,
-            position: place.coordinates,
-          })
-
-          let chance = 20;
-          let randNum = Math.random()*100;
-
-          if (randNum >= chance) {
-            circle.setMap(null)
-          }
-
-          const contentString =
-          `<div class="infowindow">`+
-            `<div>Name: ${place.name}<div>`+
-            `<div>Address: ${place.address}<div>`+
-            `<div>Phone Number: ${place.international_phone_number}<div>`+
-            `<div>Rating: ${place.rating}<div>`+
-            `<div>Number of Ratings: ${place.rating_n}<div>`+
-          `</div>`;
-
-          const infowindow = new google.maps.InfoWindow({
-            content: contentString
-          })
-
-          circle.addListener('click', () => {
-            infowindow.open(map,circle);
-          })
-
-          circles.push(circle)
-
-        })
-
-        var legend = document.getElementById('legend');
-        map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend);
-
-        // const heatMapPoint = { location: new google.maps.LatLng(place.coordinates.lat, place.coordinates.lng), weight: 0 }
-        // heatMapData.push(heatMapPoint)
-
-        //
-        // let heatmap = new google.maps.visualization.HeatmapLayer({
-        //   data: heatMapData,
-        // });
-        //
-        // heatmap.setMap(map);
-
-      }
-    </script>
+    <!-- Map and Marker Generation -->
+    <script src="map-generation.js"></script>
 
     <!-- data controls/filters -->
     <script src="update_controls.js"></script>
