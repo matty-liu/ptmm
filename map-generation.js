@@ -67,6 +67,7 @@ function initMap() {
       radius: 1,
       populartimes: place.populartimes,
       position: place.coordinates,
+      type: 'bar',
     })
 
     let chance = 20;
@@ -111,6 +112,7 @@ function initMap() {
       radius: 1,
       populartimes: place.populartimes,
       position: place.coordinates,
+      type: 'night_club'
     })
 
     let chance = 20;
@@ -154,6 +156,7 @@ function initMap() {
       radius: 1,
       populartimes: place.populartimes,
       position: place.coordinates,
+      type: 'cafe',
     })
 
     let chance = 20;
@@ -197,6 +200,7 @@ function initMap() {
       radius: 1,
       populartimes: place.populartimes,
       position: place.coordinates,
+      type: 'gym',
     })
 
     let chance = 20;
