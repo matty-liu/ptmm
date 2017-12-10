@@ -19,7 +19,7 @@ html, body {
   flex-direction: column;
   justify-content: space-between;
 
-  overflow: scroll;
+  overflow: hidden;
 }
 
 .left-title {

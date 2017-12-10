@@ -88,6 +88,7 @@ function handleDay(day) {
 }
 
 let alreadyPressed = false // so users can't spam play button
+let setIntervalValid;
 function handlePlay() {
   if (!alreadyPressed) {
     alreadyPressed = true;
