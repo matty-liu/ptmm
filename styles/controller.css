@@ -244,13 +244,13 @@ input[type=range] {
   -webkit-appearance: none;
 }
 
-input[type=range]::-webkit-slider-runnable-track {
+input[type=range]::slider-runnable-track {
     height: 4px;
     background: #5D6E84;
 }
 
 /* thumb refer to the button on the slider */
-input[type=range]::-webkit-slider-thumb {
+input[type=range]::slider-thumb {
     -webkit-appearance: none;
     border: none;
     height: 16px;
@@ -261,7 +261,7 @@ input[type=range]::-webkit-slider-thumb {
     transition: background .25s ease-in-out;
 }
 
-input[type=range]::-webkit-slider-thumb:hover {
+input[type=range]::slider-thumb:hover {
     background: white;
 }
 
