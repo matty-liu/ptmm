@@ -196,9 +196,11 @@ input[type=radio]:checked ~ label .check::before {
 
 
 
+
 .controller-sliders {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 }
 
 .hour-controls-container {
@@ -238,31 +240,100 @@ input:hover {
   cursor: pointer;
 }
 
+
+
+/* The follow commands remove default slider styling */
 input[type=range] {
-  margin: 10px;
-  width: 75%;
+  /* Hides the slider so that custom slider can be made */
   -webkit-appearance: none;
-  -ms-appearance: none;
-  -moz-appearance: none;
+  /* Specific width is required for Firefox. */
+  width: 100%;
+  /* Otherwise white in Chrome */
+  background: transparent;
 }
 
-input[type=range]::-webkit-slider-runnable-track{
-    height: 4px;
-    background: #5D6E84;
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
 }
+
+input[type=range]:focus {
+  /* Removes the blue border. You should probably do some
+  kind of focus styling for accessibility reasons though. */
+  outline: none;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+  /* Hides the slider so custom styles can be added */
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+
+input[type=range] {
+  margin: 10px;
+  width: 90%;
+  cursor: pointer;
+}
+
+
+input[type=range]::-webkit-slider-runnable-track{
+  height: 4px;
+  background: #5D6E84;
+}
+input[type=range]::-moz-range-track {
+  height: 4px;
+  background: #5D6E84;
+}
+/* ie has more elaborate custom slider */
+input[type=range]::-ms-track {
+  height: 4px;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+/* fill lower refers to the portion of the track prior to the thumb */
+input[type=range]::-ms-fill-lower {
+  background: #5D6E84;
+}
+/* fill upper refers to the portion of the track after the thumb */
+input[type=range]::-ms-fill-upper {
+  background: #5D6E84;
+}
+
+
 
 /* thumb refer to the button on the slider */
 input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    -ms-appearance: none;
-    -moz-appearance: none;
-    border: none;
-    height: 16px;
-    width: 16px;
-    border-radius: 100%;
-    background: #CAB485;
-    margin-top: -5px;
-    transition: background .25s ease-in-out;
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 100%;
+  background: #CAB485;
+  margin-top: -5px;
+  transition: background .25s ease-in-out;
+}
+/* All the same stuff for Firefox */
+input[type=range]::-moz-range-thumb {
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 100%;
+  background: #CAB485;
+  margin-top: -5px;
+  transition: background .25s ease-in-out;
+}
+/* All the same stuff for IE */
+input[type=range]::-ms-thumb {
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 100%;
+  background: #CAB485;
+  margin-top: -5px;
+  transition: background .25s ease-in-out;
 }
 
 input[type=range]::-webkit-slider-thumb:hover {
