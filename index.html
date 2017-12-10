@@ -15,7 +15,7 @@
 
     <style>
       #map {
-        height: 100vh;
+        height: 99vh;
         width: 55%;
       }
     </style>
@@ -138,16 +138,59 @@
 
         </form>
 
+        <form id="place-type">
+
+          <div>Place Type</div>
+
+            <div class="place-type">
+              <label class="container">
+                <input type="checkbox" checked="checked">
+                <span class="checkbox"></span>
+                <div>&nbspRestaurants</div>
+              </label>
+            </div>
+            <div class="place-type">
+              <label class="container">
+                <input type="checkbox" checked="checked">
+                <span class="checkbox"></span>
+                <div>&nbspBars</div>
+              </label>
+            </div>
+            <div class="place-type">
+              <label class="container">
+                <input type="checkbox" checked="checked">
+                <span class="checkbox"></span>
+                <div>&nbspNightclubs</div>
+              </label>
+            </div>
+            <div class="place-type">
+              <label class="container">
+                <input type="checkbox" checked="checked">
+                <span class="checkbox"></span>
+                <div>&nbspCafes</div>
+              </label>
+            </div>
+            <div class="place-type">
+              <label class="container">
+                <input type="checkbox" >
+                <span class="checkbox"></span>
+                <div>&nbspGyms</div>
+              </label>
+            </div>
+
+        </form>
+
         <div class="controller-sliders">
           <div class="hour-controls-container">
             <div class="">Hour (military time) : <span class="hour">00</span>:00</div>
-            <div class="hour-controls-buttons">
-              <button type="button" name="button" onclick="handlePlay()">play</button>
-              <button type="button" name="button" onclick="handlePause()">pause</button>
-            </div>
           </div>
           <div id="hourSliderContainer">
             <input type="range" min="0" max="23" value="0" class="slider" id="hourSlider">
+          </div>
+
+          <div class="hour-controls-buttons">
+            <button type="button" name="button" onclick="handlePlay()">play</button>
+            <button type="button" name="button" onclick="handlePause()">pause</button>
           </div>
 
           <div>Establishment Density: <span id="restDensity">20</span>%</div>

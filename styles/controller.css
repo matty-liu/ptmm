@@ -1,7 +1,7 @@
 .controller {
   display: flex;
   margin-top: 10px;
-  border: 2px solid rgb(118,105,82);
+  /*border: 2px solid rgb(118,105,82);*/
   padding: 8px;
   border-radius: 2%;
   justify-content: space-between;
@@ -13,6 +13,9 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: left;
+
+  /*border: 2px solid rgb(118,105,82);
+  border-radius: 2%;*/
 }
 
 .day {
@@ -22,7 +25,7 @@
   color: #5D6E84;
 }
 
-/* hides radio button to allow for custom radio button */
+/* hides default radio button to allow for custom radio button */
 .day input[type=radio]{
   position: absolute;
   visibility: hidden;
@@ -36,6 +39,9 @@
 }
 
 .day:hover {
+	color: #FFFFFF;
+}
+.container:hover {
 	color: #FFFFFF;
 }
 
@@ -82,6 +88,114 @@ input[type=radio]:checked ~ label .check {
 input[type=radio]:checked ~ label .check::before {
   background: #CAB485;
 }
+
+
+.place-type {
+  margin: 2px;
+}
+
+/* Customize the label (the container) */
+.container {
+  display: flex;
+  position: relative;
+  cursor: pointer;
+
+  color: #5D6E84;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  -webkit-transition: all 0.25s linear;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  visibility: hidden;
+}
+
+/* Create a custom checkbox */
+.checkbox {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 14px;
+  width: 14px;
+  border: 2px solid #5D6E84;
+
+  transition: border .25s linear;
+  -webkit-transition: border .25s linear;
+}
+
+/* On mouse-over, when unchecked, border appears white */
+.container:hover input ~ .checkbox {
+  border: solid white;
+}
+
+/* When the checkbox is checked, hold gold border color */
+.container input:checked ~ .checkbox {
+  border: 3px solid #CAB485;
+}
+
+/* When hover over checked checkbox, text turns white */
+.container input:checked:hover ~ .checkbox {
+  border: 3px solid white;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+/* :after allow you to add text content after the selected element */
+
+/* Checkmark/indicator */
+.checkbox:after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: -1px;
+  width: 5px;
+  height: 10px;
+
+  border: solid rgb(34,46,63);
+  border-width: 0 0 0 0;
+
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+
+  transition: border .25s linear;
+  -webkit-transition: border .25s linear;
+}
+
+/* Show the custom checkmark when checked */
+.container input:checked ~ .checkbox:after {
+  border: solid #CAB485;
+  border-width: 0 3px 3px 0;
+}
+
+/* When hovered over checked checkbox, checkmark turns white */
+.container input:checked:hover ~ .checkbox:after {
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transition: border .25s linear;
+  -webkit-transition: border .25s linear;
+}
+
+/* When checked, place type stays colored */
+.container input:checked ~ div {
+  color: #CAB485;
+  transition: color .25s linear;
+  -webkit-transition: color .25s linear;
+}
+
+/* When hover over checked box, text turns white */
+.container input:checked:hover ~ div {
+  color: white;
+  transition: color .25s linear;
+  -webkit-transition: color .25s linear;
+}
+
+
 
 
 .controller-sliders {
