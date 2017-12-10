@@ -5,13 +5,13 @@
 }
 
 #clock {
-  position: fixed;
+  /* set to none inintially, will change display type in map generation file */
+  display: none;
   color: #CAB485;
-  z-index: 1000000;
-  margin: 20px 40px;
+  margin: 5px 20px;
   font-size: 45px;
   font-weight: bold;
-
+  font-family: 'Anaheim', sans-serif;
   animation: fadein 3s linear;
 }
 

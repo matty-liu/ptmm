@@ -21,7 +21,7 @@ html, body {
 }
 
 .left-title {
-  /*color: #D59563;*/
+  justify-content: center;
 }
 
 .subheader {

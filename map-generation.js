@@ -232,6 +232,9 @@ function initMap() {
   })
 
   var legend = document.getElementById('legend');
+  var clock = document.getElementById('clock')
   map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend);
-  setTimeout( () => {legend.style.display = 'flex'}, 500)
+  map.controls[google.maps.ControlPosition.LEFT_TOP].push(clock);
+  setTimeout( () => {legend.style.display = 'flex'}, 1000)
+  setTimeout( () => {clock.style.display = 'flex'}, 1000)
 }
