@@ -1,8 +1,8 @@
 # Populartimes
 
-Welcome to the populartimes! The [populartimes](http://mattyliu.com/popularTimesMapManhattan/) looks into how busy establishments are (i.e. restaurants, bars, nightclubs) throughout the day and week.
+Welcome to the populartimes! The [populartimes](http://mattyliu.com/ptmm/) looks into how busy establishments are (i.e. restaurants, bars, nightclubs) throughout the day and week.
 
-[Live Link](http://mattyliu.com/popularTimesMapManhattan/)
+[Live Link](http://mattyliu.com/ptmm/)
 
 ## About
 
