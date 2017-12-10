@@ -101,7 +101,19 @@ input[type=radio]:checked ~ label .check::before {
 }
 
 button {
-  background: #5D6E84;
+  color: black;
+  background-color: lightgray;
+  border: none;
+  border-radius: 2px;
+  padding: 2px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 0 5px;
+
+  transition: 0.3s;
+  transition-timing-function: linear;
 }
 
 button:hover {
@@ -136,6 +148,7 @@ input[type=range]::-webkit-slider-thumb {
     margin-top: -5px;
     transition: background .25s ease-in-out;
 }
+
 input[type=range]::-webkit-slider-thumb:hover {
     background: white;
 }

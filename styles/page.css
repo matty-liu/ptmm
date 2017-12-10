@@ -26,10 +26,10 @@ html, body {
   font-size: 45px;
   font-weight: bold;
 
-  animation: fade 3s linear;
+  animation: fadein 3s linear;
 }
 
-@keyframes fade {
+@keyframes fadein {
   0% { opacity: 0 }
   100% { opacity: 1 }
 }
@@ -96,22 +96,6 @@ html, body {
 
 .description-text-explanation button {
   margin: 0 6px;
-}
-
-button {
-  color: black;
-  background-color: white;
-  border: none;
-  border-radius: 2px;
-  padding: 2px 6px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 12px;
-  margin: 0 5px;
-
-  transition: 0.3s;
-  transition-timing-function: linear;
 }
 
 .infowindow {
