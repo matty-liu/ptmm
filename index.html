@@ -74,27 +74,6 @@
     <div class="left">
       <div class="left-title">The Populartimes - Manhattan</div>
 
-      <div class="description-container">
-
-        <div class="description-text">
-          <div class="description-greeting">
-            Welcome to the the Populartimes: Manhattan Edition!
-            <br><br>
-            The Populartimes: Manhattan Edition is a visualization of customer traffic within various establishments throughout lower/middle Manhattan during various times of the day and days of the week.
-            <br><br>
-            Each dot on the map represents a different establishment type <br>(i.e. <span class="red">resturants</span>, <span class="green">bars</span>, <span class="blue">nightclubs</span>, <span class="orange">cafes</span>, <span class="purple">gyms</span>)<br> and by coupling the dots with data from Google Places API, we can visually see how customer traffic at an establishment changes over time.
-
-            <br><br>
-            Click the info button to find out more about the dots!
-            <button id="infoModalButton">Info</button>
-          </div>
-          <div class="description-text-explanation">
-
-          </div>
-        </div>
-      </div>
-
-
       <div class="controller">
 
         <form id="day">
@@ -175,16 +154,28 @@
           <div id="resturantDensitySliderContainer">
             <input type="range" min="0" max="100" value="20" class="slider" id="resturantDensitySlider">
           </div>
-          <div>Note: The default density is set to 20% to support most devices. For mobile devices, set den: < 10%
-          </div>
+
         </div>
 
       </div>
 
+      <div class="description-container">
+        <div class="description-text">
+          <div class="description-greeting">
+            The Populartimes: Manhattan is a visualization of customer traffic within various establishments throughout lower/middle Manhattan during various times of the day and days of the week.
+            <br><br>
+            Click the info button to find out more!
+            <button id="infoModalButton">Info</button>
+          </div>
+          <br>
+          <div>
+            Note: For the best experience, use a low resource intensive browser (i.e. Safari, Edge (not Chrome!)). Continuous rendering is not recommended for mobile devices.
+          </div>
+        </div>
+      </div>
+
       <div id="footer" class="footer">
-        Establishment data is prefetched and pulled from Google's Places API.
-        <br><br>
-        If you'd like my project, and want to find out more about this project or what else I am working on, check my Github!
+        If you liked my project, want to find out more about this project or contact me, checkout my Github or website!
         <div class="footer-logos">
           <a class="fa fa-user-o" aria-hidden="true" href="http://mattyliu.com"></a>
           <a class="fa fa-github" aria-hidden="true" href="https://github.com/matty-liu"></a>
@@ -202,28 +193,28 @@
       <!-- Modal content -->
       <div class="modal-content">
         <span class="close">&times;</span>
+
         <div id="info" class="description-dots">
+          <span>
+            Each dot on the map represents a different establishment type (i.e. <span class="red">resturants</span>, <span class="green">bars</span>, <span class="blue">nightclubs</span>, <span class="orange">cafes</span>, <span class="purple">gyms</span>). Using data from Google's Places API, we can observe how customer traffic at an establishment changes over time.
+          </span>
           <div class="description-colors">
             <img src="img/dots.png">
-            <div class="description-colors-dots">
-              <span class="description-colors-dots-text">
-              The different colored dots represent the following establishment types:
-              </span>
-              <div class="dots-color-info">
-                <div class="red">restaurants<br>(red dots)</div>
-                <div class="green">bars<br>(green dots)</div>
-                <div class="blue">nightclubs<br>(blue dots)</div>
-                <div class="orange">cafes<br>(orange dots)</div>
-                <div class="purple">gyms<br>(purple dots)</div>
-              </div>
+            <div class="dots-color-info">
+              <div class="red">restaurants<br>(red dots)</div>
+              <div class="green">bars<br>(green dots)</div>
+              <div class="blue">nightclubs<br>(blue dots)</div>
+              <div class="orange">cafes<br>(orange dots)</div>
+              <div class="purple">gyms<br>(purple dots)</div>
             </div>
           </div>
+
           <div class="size">
-            <div class="size-info">The size or "business" of a establishment is based off of Google Places API. The size will change depending on the specified time and date.</div>
+            <div class="size-info">The size of a dot will change depending on how busy the establishment is at the specified time and date. We determine how busy an instiution is by using the Populartimes API.</div>
             <div class="description-populartimes">
               <img src="img/populartimes.png" class="populartimes-img">
             </div>
-            It should be noted that this is relatively speaking, so the dots are not always reflective of the amount of people in the area.
+            It should be noted that the size of each dot is relative to the establishment size meaning a small 10 person restaurant at full capcity will render a large dot even though their are not a large amount of people present.
           </div>
           <div>
             <img src="img/selectable.png" class="populartimes-img"><br>
