@@ -153,21 +153,6 @@ function contUpdateCircle() {
 }
 
 
-function updateMap() {
-  circles.forEach((circle, idx) => {
-
-    if (circle.position.lat > currentBounds.southWest.lat &&
-      circle.position.lat < currentBounds.northEast.lat &&
-      circle.position.lng > currentBounds.southWest.lng &&
-      circle.position.lng < currentBounds.northEast.lng) {
-      circle.setMap(map)
-    } else {
-      circle.setMap(null)
-    }
-  })
-}
-
-
 
 
 
