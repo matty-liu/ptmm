@@ -1,7 +1,7 @@
 /*above 1160*/
 @media screen and (min-width: 1150px) {
 
-  body {
+  .body {
     display: flex;
     flex-direction: row;
   }
@@ -28,7 +28,7 @@
   (max-width: 1150px) and
   (min-width: 800px) {
 
-  body {
+  .body {
     display: flex;
     flex-direction: row;
   }
@@ -54,20 +54,21 @@
 /*below 640 for mobile*/
 @media screen and (max-width: 950px) {
 
-  body {
+  .body {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
+    overflow: scroll;
   }
 
-  #map{
-    width: 100%;
+  #map {
+    width: 95%;
     height: 99vh;
   }
 
   .left{
-    width: 410px;
-    min-width: 450px;
+    width: 320px;
+    min-width: 310px;
     height: auto;
     margin: 20px;
     justify-content: center;
@@ -76,13 +77,12 @@
   .left-title {
     top: 0;
     display: flex;
-    font-size: 32px;
+    font-size: 25px;
     font-weight: bold;
     justify-content: center;
   }
 
   .description-text div {
-    min-width: 400px;
   }
 
   #footer {
