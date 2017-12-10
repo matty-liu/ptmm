@@ -11,7 +11,6 @@ function initMap() {
     zoomControl: true,
   });
 
-
   googleRestaurants.forEach((place) => {
     const circle = new google.maps.Circle({
       strokeColor: '#FF0000',
@@ -229,5 +228,5 @@ function initMap() {
 
   var legend = document.getElementById('legend');
   map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend);
-
+  setTimeout( () => {legend.style.display = 'flex'}, 500)
 }
