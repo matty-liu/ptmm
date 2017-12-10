@@ -7,11 +7,6 @@ let restDensity = 0;
 let hourSlider = document.getElementById("hourSlider");
 let hourHTMLclass = document.getElementsByClassName("hour");
 
-// Display the default slider value and clock value for map on startup
-// For loop because we are showing time in multiple places
-// for (let i = 0 ; i < hourHTMLclass.length; i++) {
-//   hourHTMLclass[i].innerHTML = hour
-// }
 
 // Update the current slider value (each time you drag the slider handle)
 hourSlider.onchange = function() {
@@ -119,53 +114,48 @@ function handlePause() {
 
 
 
-// function grow(radiusTarget, circle) {
-//   const growing = setInterval(function() {
-//     console.log("growing radius")
-//     var radius = circle.getRadius();
-//     if ((radius >= radiusTarget) || (alreadyPressed === false)) {
-//       circle.setRadius(radiusTarget)
-//       clearInterval(growing)
-//     }
-//     circle.setRadius(radius + (1*5));
-//   }, 10);
-// }
-//
-// function shrink(radiusTarget, circle) {
-//   const shrinking = setInterval(function() {
-//     console.log("shrinking radius")
-//     var radius = circle.getRadius();
-//     if ((radius >= radiusTarget) || (alreadyPressed === false)) {
-//       circle.setRadius(radiusTarget)
-//       clearInterval(shrinking)
-//     }
-//     circle.setRadius(radius - (1*5));
-//   }, 10);
-// }
+function grow(radiusTarget, circle) {
+  const growing = setInterval(function() {
+    console.log("growing radius")
+    var radius = circle.getRadius();
+    if ((radius >= radiusTarget) || (alreadyPressed === false)) {
+      circle.setRadius(radiusTarget)
+      clearInterval(growing)
+    }
+    circle.setRadius(radius + (1*5));
+  }, 10);
+}
+
+function shrink(radiusTarget, circle) {
+  const shrinking = setInterval(function() {
+    console.log("shrinking radius")
+    var radius = circle.getRadius();
+    if ((radius >= radiusTarget) || (alreadyPressed === false)) {
+      circle.setRadius(radiusTarget)
+      clearInterval(shrinking)
+    }
+    circle.setRadius(radius - (1*5));
+  }, 10);
+}
 
 
 
 function updateCircle() {
-  console.log("updating")
 
+  // growing/shrinking circles
   circles.forEach( (circle, idx) => {
-    // let radiusNew = circle.populartimes[day].data[hour];
-    // var radius = circle.getRadius()
-    // radiusNew = radiusNew * 0.65;
-
-    let radius = circle.populartimes[day].data[hour];
-    radius = radius * 0.65;
-    // setTimeout(() => circle.setRadius(radius), 1)
-    circle.setRadius(radius) // for non growing animation
+    let radiusNew = circle.populartimes[day].data[hour];
+    var radius = circle.getRadius()
+    radiusNew = radiusNew * 0.65;
 
     // what direction the radius changes
-  //   if (radiusNew > radius) {
-  //     let radiusTarget = radiusNew
-  //     grow(radiusTarget, circle)
-  //   } else {
-  //     let radiusTarget = radiusNew;
-  //     shrink(radiusTarget, circle)
-  //   }
+    if (radiusNew > radius) {
+      let radiusTarget = radiusNew
+      grow(radiusTarget, circle)
+    } else {
+      let radiusTarget = radiusNew;
+      shrink(radiusTarget, circle)
+    }
   });
 
   hourSlider.value = hour;
@@ -173,7 +163,7 @@ function updateCircle() {
 
 
 function contUpdateCircle() {
-  console.log("continuous updating")
+
   if (hour > 23) {
     hour = 0;
     day += 1;
@@ -184,22 +174,18 @@ function contUpdateCircle() {
   }
 
   circles.forEach((circle, idx) => {
-    // let radiusNew = circle.populartimes[day].data[hour];
-    // var radius = circle.getRadius()
-    // radiusNew = radiusNew * 0.65;
-
-    let radius = circle.populartimes[day].data[hour];
-    radius = radius * 0.65;
-    circle.setRadius(radius) // for non growing animation
+    let radiusNew = circle.populartimes[day].data[hour];
+    var radius = circle.getRadius()
+    radiusNew = radiusNew * 0.65;
 
     // what direction the radius changes
-  //   if (radiusNew > radius) {
-  //     let radiusTarget = radiusNew
-  //     grow(radiusTarget, circle)
-  //   } else {
-  //     let radiusTarget = radiusNew;
-  //     shrink(radiusTarget, circle)
-  //   }
+    if (radiusNew > radius) {
+      let radiusTarget = radiusNew
+      grow(radiusTarget, circle)
+    } else {
+      let radiusTarget = radiusNew;
+      shrink(radiusTarget, circle)
+    }
   })
 
 
@@ -218,19 +204,6 @@ function contUpdateCircle() {
 }
 
 
-function updateMap() {
-  circles.forEach((circle, idx) => {
-
-    if (circle.position.lat > currentBounds.southWest.lat &&
-      circle.position.lat < currentBounds.northEast.lat &&
-      circle.position.lng > currentBounds.southWest.lng &&
-      circle.position.lng < currentBounds.northEast.lng) {
-      circle.setMap(map)
-    } else {
-      circle.setMap(null)
-    }
-  })
-}
 
 
 
