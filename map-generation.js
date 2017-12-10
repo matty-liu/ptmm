@@ -24,6 +24,7 @@ function initMap() {
       radiusPrev: 1,
       populartimes: place.populartimes,
       position: place.coordinates,
+      type: 'restaurant',
     })
 
     let chance = 20;
