@@ -1,0 +1,63 @@
+#map {
+  border: 2px solid rgb(118,105,82);
+  border-radius: 5px;
+  animation: fadein 3s linear;
+}
+
+#clock {
+  position: fixed;
+  color: #CAB485;
+  z-index: 1000000;
+  margin: 20px 40px;
+  font-size: 45px;
+  font-weight: bold;
+
+  animation: fadein 3s linear;
+}
+
+@keyframes fadein {
+  0% { opacity: 0 }
+  100% { opacity: 1 }
+}
+
+#legend {
+  display: none;
+  flex-direction: column;
+
+  font-family: Arial, sans-serif;
+  background: rgb(34,46,63);
+  color: #CAB485;
+
+  padding: 0 6px;
+  margin: 10px;
+  border: 2px solid rgb(118,105,82);
+
+  animation: fadein 2.5s linear;
+}
+
+.legend-title {
+  margin-top: 6px;
+}
+
+.legend-dots {
+  display: flex;
+  margin: 1px 0;
+}
+
+.legend-dots div {
+  display: flex;
+  align-items: center;
+  padding-bottom: 2px;
+  padding-left: 4px;
+}
+
+.legend-dots img {
+  object-fit: none;
+  display: flex;
+  transform: scale(0.7);
+}
+
+.infowindow {
+  color: rgb(34,46,63);
+  animation: fadein 0.2s linear;
+}
