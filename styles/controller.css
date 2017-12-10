@@ -1,7 +1,7 @@
 .controller {
   display: flex;
   margin-top: 10px;
-  border: 1px solid white;
+  border: 2px solid rgb(118,105,82);
   padding: 8px;
   border-radius: 2%;
   justify-content: space-between;
@@ -19,7 +19,7 @@
   display: flex;
   width: 120px;
   margin: 0;
-  color: lightgrey;
+  color: #5D6E84;
 }
 
 /* hides radio button to allow for custom radio button */
@@ -47,7 +47,7 @@
 .check {
   display: block;
   position: relative;
-  border: 3px solid #AAAAAA;
+  border: 2px solid #5D6E84;
   border-radius: 100%;
   height: 12px;
   width: 12px;
@@ -72,15 +72,15 @@
 
 /* the tilde is used to grab the next sibling */
 input[type=radio]:checked ~ label {
-  color: #0DFF92;
+  color: #CAB485;
 }
 
 input[type=radio]:checked ~ label .check {
-  border: 3px solid #0DFF92;
+  border: 3px solid #CAB485;
 }
 
 input[type=radio]:checked ~ label .check::before {
-  background: #0DFF92;
+  background: #CAB485;
 }
 
 
@@ -100,9 +100,13 @@ input[type=radio]:checked ~ label .check::before {
   align-items: center;
 }
 
+button {
+  background: #5D6E84;
+}
+
 button:hover {
   cursor: pointer;
-  background-color: black;
+  background-color: rgb(118,105,82);
   color: white;
 }
 
@@ -117,8 +121,8 @@ input[type=range] {
 }
 
 input[type=range]::-webkit-slider-runnable-track {
-    height: 5px;
-    background: #ddd;
+    height: 4px;
+    background: #5D6E84;
 }
 
 /* thumb refer to the button on the slider */
@@ -128,7 +132,7 @@ input[type=range]::-webkit-slider-thumb {
     height: 16px;
     width: 16px;
     border-radius: 100%;
-    background: #0DFF92;
+    background: #CAB485;
     margin-top: -5px;
     transition: background .25s ease-in-out;
 }

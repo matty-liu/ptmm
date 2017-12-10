@@ -1,15 +1,26 @@
+html, body {
+  height: auto;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
 
 .body {
   display: flex;
   background-color: rgb(34,46,63);
-  color: white;
+  color: #CAB485;
   font-family: 'Anaheim', sans-serif;
   overflow: scroll;
 }
 
+#map {
+  border: 2px solid rgb(118,105,82);
+  border-radius: 5px;
+}
+
 #clock {
   position: fixed;
-  color: white;
+  color: #CAB485;
   z-index: 1000000;
   margin: 20px 40px;
   font-size: 45px;
@@ -25,9 +36,15 @@
 
 #legend {
   display: flex;
-  color: white;
   flex-direction: column;
+
+  font-family: Arial, sans-serif;
+  background: rgb(34,46,63);
+  color: #CAB485;
+
   padding: 0 6px;
+  margin: 10px;
+  border: 2px solid rgb(118,105,82);
 }
 
 .legend-title {
@@ -60,7 +77,7 @@
 }
 
 .description-container {
-  border: 1px solid white;
+  border: 2px solid rgb(118,105,82);
   padding: 8px;
   border-radius: 2%;
 }
@@ -122,6 +139,7 @@ button {
   transition: color 0.3s;
   transition-timing-function: linear;
 }
+
 .footer-logos a:hover {
-  color: black;
+  color: #CAB485;
 }
