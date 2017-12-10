@@ -65,10 +65,10 @@ googleRestaurants.forEach((place) => {
   circles.push(circle)
 ```
 
-To dynamically update the map, all we do is call and update method whenever a user action is detected. We reiterate through the circles, and change the radius size of the point depending on the time of day and day of the week and as a result the circle's radius is changed on the map as well.
+To dynamically update the map, we call an update marker method. We iterate through the collection of markers, and change the radius size of each marker depending on the populartimes data at the corresponding time of day and day of the week.
 
 ```JavaScript
-function updateCircle() {
+function updateCircleSize() {
   circles.forEach( (circle, idx) => {
     let radius = circle.populartimes[day].data[hour];
     radius = radius * 0.65;
