@@ -110,5 +110,6 @@
 }
 
 .populartimes-img {
-  transform: scale(0.8,0.8);
+  width: 100%;
+  object-fit: contain;
 }
