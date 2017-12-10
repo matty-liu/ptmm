@@ -1,23 +1,19 @@
 .controller {
   display: flex;
-  margin-top: 10px;
-  /*border: 2px solid rgb(118,105,82);*/
   padding: 8px;
-  border-radius: 2%;
   justify-content: space-between;
 }
 
+
+
+
+/* container for days */
 #day {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: left;
-
-  /*border: 2px solid rgb(118,105,82);
-  border-radius: 2%;*/
 }
 
+/* individual day */
 .day {
   display: flex;
   width: 120px;
@@ -88,6 +84,8 @@ input[type=radio]:checked ~ label .check {
 input[type=radio]:checked ~ label .check::before {
   background: #CAB485;
 }
+
+
 
 
 .place-type {
