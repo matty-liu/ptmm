@@ -18,6 +18,7 @@ html, body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  animation: fadein 2s linear;
 }
 
 .left-title {
