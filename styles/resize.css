@@ -1,4 +1,4 @@
-/*above 1160*/
+/*above 1150*/
 @media screen and (min-width: 1150px) {
 
   .body {
@@ -11,6 +11,7 @@
     margin: 20px;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
   }
 
   .left-title {
@@ -18,15 +19,25 @@
     display: flex;
     font-size: 40px;
     font-weight: bold;
-    justify-content: center;
+  }
+
+  .left-content {
+    display: flex;
+    flex-direction: column;
+    height: 450px;
+    justify-content: space-between;
+  }
+
+  #footer-mobile {
+    display: none;
   }
 
 }
 
-/*between 640 and 1160*/
+/*between 950 and 1150*/
 @media screen and
   (max-width: 1150px) and
-  (min-width: 800px) {
+  (min-width: 950px) {
 
   .body {
     display: flex;
@@ -36,9 +47,10 @@
   .left {
     width: 45%;
     margin: 20px;
-    min-width: 450px;
+    min-width: 480px;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
   }
 
   .left-title {
@@ -49,10 +61,23 @@
     justify-content: center;
   }
 
+  .left-content {
+    display: flex;
+    flex-direction: column;
+    height: 410px;
+    justify-content: space-between;
+  }
+
+  #footer-mobile {
+    display: none;
+  }
+
 }
 
-/*below 640 for mobile*/
-@media screen and (max-width: 950px) {
+/*below 490 for mobile/tablet*/
+@media screen and
+  (max-width: 950px) and
+  (min-width: 490px) {
 
   .body {
     display: flex;
@@ -66,11 +91,12 @@
     height: 99vh;
   }
 
-  .left{
-    width: 320px;
+  .left {
+    width: 90%;
+    max-width: 550px;
     min-width: 310px;
     height: auto;
-    margin: 20px;
+    margin: 15px;
     justify-content: center;
   }
 
@@ -80,13 +106,111 @@
     font-size: 25px;
     font-weight: bold;
     justify-content: center;
+    margin-bottom: 10px;
   }
 
-  .description-text div {
+  .left-content {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .controller {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    padding-top: 15px;
+    padding-bottom: 0;
+  }
+
+  .controller-sliders {
+    display: flex;
+    justify-content: space-between;
+    min-height: 140px;
+  }
+
+  #footer {
+    display: none
+  }
+  #footer-mobile {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+  .footer-text {
+    text-align: center;
+    max-width: 380px;
+  }
+
+}
+
+@media screen and
+  (max-width: 490px) {
+
+  .body {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    overflow: scroll;
+  }
+
+  #map {
+    width: 95%;
+    height: 99vh;
+  }
+
+  .left {
+    width: 90%;
+    max-width: 550px;
+    min-width: 310px;
+    height: auto;
+    margin: 15px;
+    justify-content: center;
+  }
+
+  .left-title {
+    top: 0;
+    display: flex;
+    font-size: 25px;
+    font-weight: bold;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .left-content {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .controller {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-bottom: 0;
+  }
+
+  .controller-sliders {
+    display: flex;
+    margin-top: 5px;
+    height: 140px;
+    width: 75%;
+  }
+
+  .controller-sliders input {
+    margin: 4px;
   }
 
   #footer {
     display: none;
+  }
+  #footer-mobile {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+  .footer-text {
+    text-align: center;
+    max-width: 380px;
   }
 
 }
