@@ -1,7 +1,8 @@
 // For updating the day, hour, and restaurant density
 let day = 0;
 let hour = 0;
-let restDensity = 0;
+let restDensity = 20;
+
 
 
 let hourSlider = document.getElementById("hourSlider");
@@ -18,7 +19,7 @@ hourSlider.onchange = function() {
       hourHTMLclass[i].innerHTML = this.value
     }
   }
-  updateCircle()
+  updateCircleSize()
 }
 
 
@@ -34,15 +35,7 @@ resturantDensitySlider.oninput = function() {
   restDensity = parseInt(this.value);
 
   // toggling circle that will be shown.
-  circles.forEach((circle, idx) => {
-    let chance = restDensity;
-    let randNum = Math.random()*100;
-    if (randNum <= chance) {
-      circle.setMap(map)
-    } else {
-      circle.setMap(null)
-    }
-  })
+  toggelCircle()
 }
 
 
@@ -50,7 +43,7 @@ resturantDensitySlider.oninput = function() {
 let dayRadio = document.getElementById("day")
 dayRadio.onchange = function(event) {
   day = parseInt(event.target.value);
-  updateCircle()
+  updateCircleSize()
 }
 
 let dayHTML = document.getElementById("dayofweek")
@@ -98,7 +91,7 @@ let alreadyPressed = false // so users can't spam play button
 function handlePlay() {
   if (!alreadyPressed) {
     alreadyPressed = true;
-    setIntervalValid = setInterval(contUpdateCircle, 500);
+    setIntervalValid = setInterval(contupdateCircleSize, 500);
   }
 }
 
@@ -107,12 +100,25 @@ function handlePause() {
   clearInterval(setIntervalValid);
 }
 
-function updateCircle() {
+// toggling circle that will be shown.
+function toggelCircle() {
+  circles.forEach((circle, idx) => {
+    let chance = restDensity;
+    let randNum = Math.random()*100;
+    if (randNum <= chance) {
+      circle.setMap(map)
+    } else {
+      circle.setMap(null)
+    }
+  })
+}
+
+
+function updateCircleSize() {
 
   circles.forEach( (circle, idx) => {
     let radius = circle.populartimes[day].data[hour];
     radius = radius * 0.65;
-    // setTimeout(() => circle.setRadius(radius), 1)
     circle.setRadius(radius) // for non growing animation
   });
 
@@ -120,7 +126,7 @@ function updateCircle() {
 }
 
 
-function contUpdateCircle() {
+function contupdateCircleSize() {
 
   if (hour > 23) {
     hour = 0;
