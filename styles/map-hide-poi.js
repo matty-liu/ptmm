@@ -1,3 +1,4 @@
+// used to copy and paste features to hide on the map
 const hidePOI = [
           {
             featureType: 'poi.business',
