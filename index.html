@@ -79,7 +79,7 @@
 
         <form id="day">
 
-          <div class="orange">Day of the Week</div>
+          <div class="subheader">Day of the Week</div>
 
             <div class="day">
               <input type="radio" id="sunday" name="day" value="6" onclick="handleDay(this)" checked="checked">
@@ -141,7 +141,7 @@
 
         <form id="place-type">
 
-          <div class="orange">Place Type</div>
+          <div class="subheader">Place Type</div>
 
             <div class="place-type">
               <label class="container">
@@ -183,7 +183,11 @@
 
         <div class="controller-sliders">
           <div class="hour-controls-container">
-            <div class="">Hour (military time) : <span class="hour">00</span>:00</div>
+            <div>
+              <span class="subheader">Hour (military time)</span>
+              :
+              <span class="hour">00</span>:00
+            </div>
           </div>
           <div id="hourSliderContainer">
             <input type="range" min="0" max="23" value="0" class="slider" id="hourSlider">
@@ -194,7 +198,11 @@
             <button type="button" name="button" onclick="handlePause()">pause</button>
           </div>
 
-          <div>Establishment Density: <span id="restDensity">20</span>%</div>
+          <div>
+            <span class="subheader">Establishment Density</span>
+            :
+            <span id="restDensity">20</span>%
+          </div>
           <div id="resturantDensitySliderContainer">
             <input type="range" min="0" max="100" value="20" class="slider" id="resturantDensitySlider">
           </div>

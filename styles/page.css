@@ -22,6 +22,15 @@ html, body {
   overflow: scroll;
 }
 
+.left-title {
+  /*color: #D59563;*/
+}
+
+.subheader {
+  color: #D59563;
+  font-size: 16px;
+}
+
 .description-container {
   border: 2px solid rgb(118,105,82);
   padding: 8px;
