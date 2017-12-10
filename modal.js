@@ -11,6 +11,8 @@ var span = document.getElementsByClassName("close")[0];
 btn.onclick = function() {
     modal.style.display = "flex";
     modal.style.animation = "fadein 0.2s linear";
+    alreadyPressed = false;
+    clearInterval(setIntervalValid)
 }
 
 // When the user clicks on <span> (x), close the modal

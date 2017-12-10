@@ -230,7 +230,7 @@ button {
 
 button:hover {
   cursor: pointer;
-  background-color: rgb(118,105,82);
+  background-color: #CAB485);
   color: white;
 }
 
