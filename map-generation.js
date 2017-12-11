@@ -49,6 +49,7 @@ function initMap() {
     styles: nightStyles,
     zoomControl: true,
   });
+  // fullscreenControl: true,
 
   googleRestaurants.forEach((place) => {
     // by default, creating a circle places a dot on the map immediately
