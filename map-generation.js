@@ -27,7 +27,7 @@ function initMap() {
       type: 'restaurant',
     })
 
-    let chance = 20;
+    let chance = restDensity;
     let randNum = Math.random()*100;
     if (randNum <= chance) {
     } else {
@@ -70,7 +70,7 @@ function initMap() {
       type: 'bar',
     })
 
-    let chance = 20;
+    let chance = restDensity;
     let randNum = Math.random()*100;
 
     if (randNum <= chance) {
@@ -115,7 +115,7 @@ function initMap() {
       type: 'night_club'
     })
 
-    let chance = 20;
+    let chance = restDensity;
     let randNum = Math.random()*100;
 
     if (randNum >= chance) {
@@ -159,7 +159,7 @@ function initMap() {
       type: 'cafe',
     })
 
-    let chance = 20;
+    let chance = restDensity;
     let randNum = Math.random()*100;
 
     if (randNum >= chance) {
@@ -203,7 +203,7 @@ function initMap() {
       type: 'gym',
     })
 
-    let chance = 20;
+    let chance = restDensity;
     let randNum = Math.random()*100;
 
     if (randNum >= chance) {
