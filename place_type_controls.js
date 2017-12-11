@@ -7,7 +7,7 @@ for (let i = 0; i < placeTypes.length; i++) {
     circles.forEach( (circle) => {
       if (circle.type === event.target.value) {
         if (event.target.checked === true) {
-          let chance = restDensity;
+          let chance = densityPercent;
           let randNum = Math.random()*100;
           if (randNum <= chance) {
             circle.setMap(map)

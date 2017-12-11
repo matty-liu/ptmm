@@ -1,3 +1,35 @@
+function createContentString(place) {
+  const contentString =
+    `<div class="infowindow">`+
+    `<div>Name: ${place.name}<div>`+
+    `<div>Address: ${place.address}<div>`+
+    `<div>Phone Number: ${place.international_phone_number}<div>`+
+    `<div>Rating: ${place.rating}<div>`+
+    `<div>Number of Ratings: ${place.rating_n}<div>`+
+    `</div>`;
+  return contentString
+}
+
+function createCircle(place, color, type) {
+  const circle = new google.maps.Circle({
+    strokeColor: color,
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: color,
+    fillOpacity: 0.35,
+    map: map,
+    center: place.coordinates,
+    radius: 1,
+    populartimes: place.populartimes,
+    position: place.coordinates,
+    id: place.id,
+    type: type,
+    types: place.types,
+  })
+  return circle
+}
+
+
 let map;
 let circles = [];
 let uniqueCircles = [];
@@ -23,32 +55,12 @@ function initMap() {
     // repeatedd entries exist in API call, filtering them out
     // still allowing duplicates if establishment has multiple types (i.e. restauanrt and bar)
     if (!restIds.has(place.id)) {
-      const circle = new google.maps.Circle({
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#FF0000',
-        fillOpacity: 0.35,
-        map: map,
-        center: place.coordinates,
-        radius: 1,
-        populartimes: place.populartimes,
-        position: place.coordinates,
-        id: place.id,
-        type: 'restaurant',
-        types: place.types,
-      })
+
+      const circle = createCircle(place, '#FF0000', 'restaurant')
       restIds.add(circle.id)
       uniqueCircles.push(circle)
 
-      const contentString =
-      `<div class="infowindow">`+
-      `<div>Name: ${place.name}<div>`+
-      `<div>Address: ${place.address}<div>`+
-      `<div>Phone Number: ${place.international_phone_number}<div>`+
-      `<div>Rating: ${place.rating}<div>`+
-      `<div>Number of Ratings: ${place.rating_n}<div>`+
-      `</div>`;
+      const contentString = createContentString(place)
       const infowindow = new google.maps.InfoWindow({
         content: contentString
       })
@@ -58,37 +70,18 @@ function initMap() {
       })
 
     }
+
   })
 
   googleBars.forEach((place) => {
 
     if (!barIds.has(place.id)) {
-      const circle = new google.maps.Circle({
-        strokeColor: '#00FF00',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#00FF00',
-        fillOpacity: 0.35,
-        map: map,
-        center: place.coordinates,
-        radius: 1,
-        populartimes: place.populartimes,
-        position: place.coordinates,
-        id: place.id,
-        type: 'bar',
-        types: place.types,
-      })
+
+      const circle = createCircle(place, '#00FF00', 'bar')
       barIds.add(circle.id)
       uniqueCircles.push(circle)
 
-      const contentString =
-      `<div class="infowindow">`+
-      `<div>Name: ${place.name}<div>`+
-      `<div>Address: ${place.address}<div>`+
-      `<div>Phone Number: ${place.international_phone_number}<div>`+
-      `<div>Rating: ${place.rating}<div>`+
-      `<div>Number of Ratings: ${place.rating_n}<div>`+
-      `</div>`;
+      const contentString = createContentString(place)
       const infowindow = new google.maps.InfoWindow({
         content: contentString
       })
@@ -98,37 +91,18 @@ function initMap() {
       })
 
     }
+
   })
 
   googleNightclubs.forEach((place) => {
 
     if (!clubIds.has(place.id)) {
-      const circle = new google.maps.Circle({
-        strokeColor: '#0000FF',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#0000FF',
-        fillOpacity: 0.35,
-        map: map,
-        center: place.coordinates,
-        radius: 1,
-        populartimes: place.populartimes,
-        position: place.coordinates,
-        id: place.id,
-        type: 'night_club',
-        types: place.types,
-      })
+
+      const circle = createCircle(place, '#0000FF', 'night_club')
       clubIds.add(circle.id)
       uniqueCircles.push(circle)
 
-      const contentString =
-      `<div class="infowindow">`+
-      `<div>Name: ${place.name}<div>`+
-      `<div>Address: ${place.address}<div>`+
-      `<div>Phone Number: ${place.international_phone_number}<div>`+
-      `<div>Rating: ${place.rating}<div>`+
-      `<div>Number of Ratings: ${place.rating_n}<div>`+
-      `</div>`;
+      const contentString = createContentString(place)
       const infowindow = new google.maps.InfoWindow({
         content: contentString
       })
@@ -138,37 +112,18 @@ function initMap() {
       })
 
     }
+
   })
 
   googleCafes.forEach((place) => {
 
     if (!cafeIds.has(place.id)) {
-      const circle = new google.maps.Circle({
-        strokeColor: '#FFA500',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#FFA500',
-        fillOpacity: 0.35,
-        map: map,
-        center: place.coordinates,
-        radius: 1,
-        populartimes: place.populartimes,
-        position: place.coordinates,
-        id: place.id,
-        type: 'cafe',
-        types: place.types,
-      })
+
+      const circle = createCircle(place, '#FFA500', 'cafe')
       cafeIds.add(circle.id)
       uniqueCircles.push(circle)
 
-      const contentString =
-        `<div class="infowindow">`+
-        `<div>Name: ${place.name}<div>`+
-        `<div>Address: ${place.address}<div>`+
-        `<div>Phone Number: ${place.international_phone_number}<div>`+
-        `<div>Rating: ${place.rating}<div>`+
-        `<div>Number of Ratings: ${place.rating_n}<div>`+
-        `</div>`;
+      const contentString = createContentString(place)
       const infowindow = new google.maps.InfoWindow({
         content: contentString
       })
@@ -178,37 +133,18 @@ function initMap() {
       })
 
     }
+
   })
 
   googleGyms.forEach((place) => {
 
     if (!gymIds.has(place.id)) {
-      const circle = new google.maps.Circle({
-        strokeColor: '#4B0082',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#4B0082',
-        fillOpacity: 0.35,
-        map: map,
-        center: place.coordinates,
-        radius: 1,
-        populartimes: place.populartimes,
-        position: place.coordinates,
-        id: place.id,
-        type: 'gym',
-        types: place.types,
-      })
+
+      const circle = createCircle(place, '#4B0082', 'gym')
       gymIds.add(circle.id)
       uniqueCircles.push(circle)
 
-      const contentString =
-      `<div class="infowindow">`+
-      `<div>Name: ${place.name}<div>`+
-      `<div>Address: ${place.address}<div>`+
-      `<div>Phone Number: ${place.international_phone_number}<div>`+
-      `<div>Rating: ${place.rating}<div>`+
-      `<div>Number of Ratings: ${place.rating_n}<div>`+
-      `</div>`;
+      const contentString = createContentString(place)
       const infowindow = new google.maps.InfoWindow({
         content: contentString
       })
@@ -218,6 +154,7 @@ function initMap() {
       })
 
     }
+
   })
 
   var legend = document.getElementById('legend');
@@ -230,19 +167,4 @@ function initMap() {
   circles = uniqueCircles
   toggelCircle()
 
-  // their are quite a few overlapping data points. many establishment are
-  // both restaurants and bar about 1000 from my data set.
-  // both bar and night_club about 200
-  // restaurant, bar and night_club about 100
-  // circles = uniqueCircles
-  // numEstab = circles.length
-  // let counter = 0
-  // for (let i=0; i < numEstab; i++) {
-  //   if (
-  //       circles[i].types.includes('bar') &&
-  //       circles[i].types.includes('night_club')) {
-  //     counter++
-  //   }
-  // }
-  // console.log(counter)
 }

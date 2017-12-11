@@ -1,7 +1,65 @@
-// For updating the day, hour, and restaurant density
+// toggling circle that will be shown.
+function toggelCircle() {
+  circles.forEach((circle, idx) => {
+    let chance = densityPercent;
+    let randNum = Math.random()*100;
+    if (randNum <= chance) {
+      circle.setMap(map)
+    } else {
+      circle.setMap(null)
+    }
+  })
+}
+
+function updateCircleSize() {
+
+  circles.forEach( (circle, idx) => {
+    let radius = circle.populartimes[day].data[hour];
+    radius = radius * 0.65;
+    circle.setRadius(radius) // for non growing animation
+  });
+
+  hourSlider.value = hour;
+}
+
+function contupdateCircleSize() {
+
+  if (hour > 23) {
+    hour = 0;
+    day += 1;
+    if (day > 6) {
+      day = 0
+    }
+    handleDay(day)
+  }
+
+  circles.forEach((circle, idx) => {
+
+    let radius = circle.populartimes[day].data[hour];
+    radius = radius * 0.65;
+    circle.setRadius(radius) // for non growing animation
+
+  })
+
+  hourSlider.value = hour;
+  // changing the hourSlider programmatically does not trigger the onchange
+  // listener so we manually set the innerHTML for this reason
+  for (let i = 0 ; i < hourHTMLclass.length; i++) {
+    if (hour < 10) {
+      hourHTMLclass[i].innerHTML = "0" + hour
+    } else {
+      hourHTMLclass[i].innerHTML = hour
+    }
+  }
+  hour += 1;
+}
+
+
+// Setting initial day, hour, and restaurant density
 let day = 0;
 let hour = 0;
-let restDensity = 20;
+let densityPercent = 10;
+
 
 let hourSlider = document.getElementById("hourSlider");
 let hourHTMLclass = document.getElementsByClassName("hour");
@@ -21,22 +79,20 @@ hourSlider.onchange = function() {
 }
 
 
-
-let resturantDensitySlider = document.getElementById("resturantDensitySlider");
-let restDenHTML = document.getElementById("restDensity");
-resturantDensitySlider.value = restDensity;
+let densityRangeSlider = document.getElementById("densityRangeSlider");
+let densityPercentHTML = document.getElementById("densityPercent");
+densityRangeSlider.value = densityPercent;
 // Display the default slider value
-restDenHTML.innerHTML = resturantDensitySlider.value;
+densityPercentHTML.innerHTML = densityRangeSlider.value;
 
 // Update the current slider value (each time you drag the slider handle)
-resturantDensitySlider.oninput = function() {
-  restDenHTML.innerHTML = this.value;
-  restDensity = parseInt(this.value);
+densityRangeSlider.oninput = function() {
+  densityPercentHTML.innerHTML = this.value;
+  densityPercent = parseInt(this.value);
 
   // toggling circle that will be shown.
   toggelCircle()
 }
-
 
 // update day on change of radio button
 let dayRadio = document.getElementById("day")
@@ -88,6 +144,7 @@ function handleDay(day) {
 
 let alreadyPressed = false // so users can't spam play button
 let setIntervalValid;
+
 function handlePlay() {
   if (!alreadyPressed) {
     alreadyPressed = true;
@@ -100,63 +157,7 @@ function handlePause() {
   clearInterval(setIntervalValid);
 }
 
-// toggling circle that will be shown.
-function toggelCircle() {
-  circles.forEach((circle, idx) => {
-    let chance = restDensity;
-    let randNum = Math.random()*100;
-    if (randNum <= chance) {
-      circle.setMap(map)
-    } else {
-      circle.setMap(null)
-    }
-  })
-}
 
-
-function updateCircleSize() {
-
-  circles.forEach( (circle, idx) => {
-    let radius = circle.populartimes[day].data[hour];
-    radius = radius * 0.65;
-    circle.setRadius(radius) // for non growing animation
-  });
-
-  hourSlider.value = hour;
-}
-
-
-function contupdateCircleSize() {
-
-  if (hour > 23) {
-    hour = 0;
-    day += 1;
-    if (day > 6) {
-      day = 0
-    }
-    handleDay(day)
-  }
-
-  circles.forEach((circle, idx) => {
-
-    let radius = circle.populartimes[day].data[hour];
-    radius = radius * 0.65;
-    circle.setRadius(radius) // for non growing animation
-
-  })
-
-  hourSlider.value = hour;
-  // changing the hourSlider programmatically does not trigger the onchange
-  // listener so we manually set the innerHTML for this reason
-  for (let i = 0 ; i < hourHTMLclass.length; i++) {
-    if (hour < 10) {
-      hourHTMLclass[i].innerHTML = "0" + hour
-    } else {
-      hourHTMLclass[i].innerHTML = hour
-    }
-  }
-  hour += 1;
-}
 
 
 

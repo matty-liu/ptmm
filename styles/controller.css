@@ -347,7 +347,7 @@ input[type=range]:focus {
   height: auto;
 }
 
-#resturantDensitySliderContainer {
+#densityRangeSliderContainer {
   display: flex;
   justify-content: center;
 }
