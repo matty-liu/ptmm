@@ -1,7 +1,7 @@
 // For updating the day, hour, and restaurant density
 let day = 0;
 let hour = 0;
-let restDensity = 100;
+let restDensity = 20;
 
 let hourSlider = document.getElementById("hourSlider");
 let hourHTMLclass = document.getElementsByClassName("hour");
