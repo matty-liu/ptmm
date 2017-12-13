@@ -144,7 +144,6 @@
 
 }
 
-/* for small mobile (such as iphone 5)*/
 @media screen and
   (max-width: 450px) {
 
@@ -241,8 +240,11 @@
 
 }
 
+
+
 @media screen and
-  (max-height: 450px) {
+  (orientation: landscape) and
+  (max-height: 600px) {
 
   .body {
     display: flex;
@@ -300,6 +302,7 @@
   #footer {
     display: none;
   }
+
   #footer-mobile {
     display: flex;
     flex-direction: column;
@@ -313,7 +316,8 @@
   .modal-content {
     width: 80%;
     min-width: 80%;
-    height: 87%;
+    height: 70%;
+
   }
 
   .dots-color-info {
@@ -327,104 +331,7 @@
   }
 
   .description-populartimes img {
-    margin: -15px 0;
-  }
-
-  #clock {
-    font-size: 25px;
-    margin: 5px 12px;
-  }
-
-}
-
-
-
-@media screen and (orientation: landscape) {
-
-  .body {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    overflow: scroll;
-  }
-
-  #map {
-    width: 95%;
-    height: 99vh;
-  }
-
-  .left {
-    width: 90%;
-    max-width: 550px;
-    min-width: 310px;
-    height: auto;
-    margin: 15px;
-    justify-content: center;
-  }
-
-  .left-title {
-    top: 0;
-    display: flex;
-    font-size: 25px;
-    font-weight: bold;
-    justify-content: center;
-    margin-bottom: 10px;
-  }
-
-  .left-content {
-    display: flex;
-    flex-direction: column-reverse;
-  }
-
-  .controller {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding-bottom: 0;
-  }
-
-  .controller-sliders {
-    display: flex;
-    margin-top: 5px;
-    height: 140px;
-    width: 75%;
-  }
-
-  .controller-sliders input {
-    margin: 4px;
-  }
-
-  #footer {
-    display: none;
-  }
-  #footer-mobile {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-  }
-  .footer-text {
-    text-align: center;
-    max-width: 380px;
-  }
-
-  .modal-content {
-    width: 80%;
-    min-width: 80%;
-    height: 87%;
-  }
-
-  .dots-color-info {
-    margin-right: 20px;
-  }
-
-  .selectable {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .description-populartimes img {
-    margin: -15px 0;
+    margin: 10px 0;
   }
 
   #clock {
