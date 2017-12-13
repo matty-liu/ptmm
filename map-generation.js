@@ -1,13 +1,31 @@
 function createContentString(place) {
   const contentString =
     `<div class="infowindow">`+
-    `<div>Name: ${place.name}<div>`+
-    `<div>Address: ${place.address}<div>`+
-    `<div>Phone Number: ${place.international_phone_number}<div>`+
-    `<div>Rating: ${place.rating}<div>`+
-    `<div>Number of Ratings: ${place.rating_n}<div>`+
+    `<div>Name: ${place.name}</div>`+
+    `<div>Address: ${place.address}</div>`+
+    `<div>Phone Number: ${place.international_phone_number}</div>`+
+    `<div>Rating: ${place.rating}</div>`+
+    `<div>Number of Ratings: ${place.rating_n}</div>`+
     `</div>`;
   return contentString
+}
+
+function customInfoWindow() {
+  infobox = new InfoBox({
+     content: document.getElementById("infobox"),
+     disableAutoPan: false,
+     maxWidth: 150,
+     pixelOffset: new google.maps.Size(-140, 0),
+     zIndex: null,
+     boxStyle: {
+        background: "url('//rawgit.com/googlemaps/v3-utility-library/master/infobox/examples/tipbox.gif') no-repeat",
+        opacity: 0.75,
+        width: "280px"
+    },
+    closeBoxMargin: "12px 4px 2px 2px",
+    closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
+    infoBoxClearance: new google.maps.Size(1, 1)
+  });
 }
 
 function createCircle(place, color, type) {
