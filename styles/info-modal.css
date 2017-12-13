@@ -29,6 +29,7 @@
 
 /* Modal Content/Box */
 .modal-content {
+  position: relative;
   background-color: rgb(34,46,63);
   width: 400px;
   height: 500px;
@@ -42,10 +43,13 @@
 
 /* The Close Button */
 .close {
+  position: sticky;
+  float: right;
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
+  top: 0;
 }
 
 .close:hover,
