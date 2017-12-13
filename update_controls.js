@@ -1,21 +1,26 @@
 // toggling circle that will be shown.
 function toggelCircle() {
+  let counter = 0
   circles.forEach((circle, idx) => {
     let chance = densityPercent;
     let randNum = Math.random()*100;
     if (randNum <= chance) {
       circle.setMap(map)
+      counter++
     } else {
       circle.setMap(null)
     }
   })
+  console.log(counter)
 }
+
+const scaling = 0.5
 
 function updateCircleSize() {
 
   circles.forEach( (circle, idx) => {
     let radius = circle.populartimes[day].data[hour];
-    radius = radius * 0.65;
+    radius = radius * scaling;
     circle.setRadius(radius) // for non growing animation
   });
 
@@ -36,7 +41,7 @@ function contupdateCircleSize() {
   circles.forEach((circle, idx) => {
 
     let radius = circle.populartimes[day].data[hour];
-    radius = radius * 0.65;
+    radius = radius * scaling;
     circle.setRadius(radius) // for non growing animation
 
   })
@@ -148,7 +153,7 @@ let setIntervalValid;
 function handlePlay() {
   if (!alreadyPressed) {
     alreadyPressed = true;
-    setIntervalValid = setInterval(contupdateCircleSize, 500);
+    setIntervalValid = setInterval(contupdateCircleSize, 1000);
   }
 }
 
