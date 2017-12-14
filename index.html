@@ -32,25 +32,10 @@
 
   <body class="body">
 
-    <!-- Night Time Style of Map -->
-    <script src="styles/map-styles-night.js"></script>
-
     <div>
       <div id="clock">
         <span id="dayofweek">Sunday</span>&nbsp
         <span class="hour"> 00</span>:00
-      </div>
-    </div>
-
-    <div id="footer-mobile" class="footer">
-      <div class="footer-text">
-        If you liked my project, want to find out more about this project or contact me, checkout my Github or website!
-      </div>
-      <div class="footer-logos">
-        <a class="fa fa-user-o" aria-hidden="true" href="http://mattyliu.com"></a>
-        <a class="fa fa-github" aria-hidden="true" href="https://github.com/matty-liu"></a>
-        <a class="fa fa-linkedin-square" aria-hidden="true" href="https://www.linkedin.com/in/matthew-liuu/"></a>
-        <a class="fa fa-envelope" aria-hidden="true" href="mailto:mattkliu@gmail.com"></a>
       </div>
     </div>
 
@@ -81,6 +66,13 @@
           <img src="img/purple-dot.png" class="legend-dot">
           <div class="purple">gyms</div>
         </div>
+      </div>
+    </div>
+
+    <!-- InfoBox as an easily customizable replacement for an InfoWindow. Click on the marker to see the infobox generated with custom html &amp; css. -->
+    <div class="infobox-wrapper">
+      <div id="infobox">
+          <!-- The contents of your info box. It's very easy to create and customize. -->
       </div>
     </div>
 
@@ -254,6 +246,18 @@
         </div>
       </div>
 
+      <div id="footer-mobile">
+        <div class="footer-text">
+          If you liked my project, want to find out more about this project or contact me, checkout my Github or website!
+        </div>
+        <div class="footer-logos">
+          <a class="fa fa-user-o" aria-hidden="true" href="http://mattyliu.com"></a>
+          <a class="fa fa-github" aria-hidden="true" href="https://github.com/matty-liu"></a>
+          <a class="fa fa-linkedin-square" aria-hidden="true" href="https://www.linkedin.com/in/matthew-liuu/"></a>
+          <a class="fa fa-envelope" aria-hidden="true" href="mailto:mattkliu@gmail.com"></a>
+        </div>
+      </div>
+
     </div>
 
     <!-- The Modal -->
@@ -328,15 +332,27 @@
     <!-- Combined data above -->
     <script src="data/places-manhat-data-join.js"></script>
 
-    <!-- Map and Marker Generation -->
+    <!-- Grab Google Maps object for map generation -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASUnStAUyUBSLjckIAwrFwrg2e4mTnmGs&libraries=visualization">
+    </script>
+
+    <!-- Night Time Style of Map -->
+    <script src="styles/map-styles-night.js"></script>
+
+    <!-- Map and Marker pieces -->
     <script src="map-generation.js"></script>
+
+    <!-- For infobox styling -->
+    <script type="text/javascript" src="styles/infobox.js"></script>
+
+    <!-- Map and Marker generation, on load initialize map creation -->
+    <script>
+      google.maps.event.addDomListener(window, 'load', initMap)
+    </script>
 
     <!-- data controls/filters -->
     <script src="update_controls.js"></script>
     <script src="place_type_controls.js"></script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASUnStAUyUBSLjckIAwrFwrg2e4mTnmGs&callback=initMap&libraries=visualization"async defer>
-    </script>
 
   </body>
 </html>
