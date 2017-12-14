@@ -1,40 +1,5 @@
-/*above 1150*/
-/*@media screen and (min-width: 1150px) {
 
-  .body {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .left {
-    width: 45%;
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-
-  .left-title {
-    top: 0;
-    display: flex;
-    font-size: 40px;
-    font-weight: bold;
-  }
-
-  .left-content {
-    display: flex;
-    flex-direction: column;
-    height: 450px;
-    justify-content: space-between;
-  }
-
-  #footer-mobile {
-    display: none;
-  }
-
-}*/
-
-/*between 950 and 1150*/
+/* above 1000px */
 @media screen and
   (min-width: 1000px) {
 
@@ -73,7 +38,7 @@
 
 }
 
-/*between 490 and 950 for mobile/tablet*/
+/*between 450 and 1000 for mobile/tablet*/
 @media screen and
   (max-width: 1000px) and
   (min-width: 450px) {
