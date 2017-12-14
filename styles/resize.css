@@ -1,5 +1,5 @@
 /*above 1150*/
-@media screen and (min-width: 1150px) {
+/*@media screen and (min-width: 1150px) {
 
   .body {
     display: flex;
@@ -32,12 +32,11 @@
     display: none;
   }
 
-}
+}*/
 
 /*between 950 and 1150*/
 @media screen and
-  (max-width: 1150px) and
-  (min-width: 950px) {
+  (min-width: 1000px) {
 
   .body {
     display: flex;
@@ -76,7 +75,7 @@
 
 /*between 490 and 950 for mobile/tablet*/
 @media screen and
-  (max-width: 950px) and
+  (max-width: 1000px) and
   (min-width: 450px) {
 
   .body {
@@ -121,12 +120,14 @@
 
     padding-top: 15px;
     padding-bottom: 0;
+    padding-right: 0;
   }
 
   .controller-sliders {
     display: flex;
     justify-content: space-between;
     min-height: 140px;
+    width: 275px;
   }
 
   #footer {
@@ -135,11 +136,13 @@
   #footer-mobile {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
   }
   .footer-text {
     text-align: center;
-    max-width: 380px;
+    max-width: 400px;
   }
 
 }
@@ -306,7 +309,9 @@
   #footer-mobile {
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 10px;
+    padding-top: 20px;
   }
   .footer-text {
     text-align: center;
@@ -331,7 +336,12 @@
   }
 
   .description-populartimes img {
-    margin: 10px 0;
+    margin: 20px 0;
+  }
+
+  .populartimes-img {
+    width: auto;
+    object-fit: none;
   }
 
   #clock {
