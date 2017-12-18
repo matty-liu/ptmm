@@ -20,7 +20,7 @@
   .left-title {
     top: 0;
     display: flex;
-    font-size: 32px;
+    font-size: 38px;
     font-weight: bold;
     justify-content: center;
   }
@@ -67,7 +67,7 @@
   .left-title {
     top: 0;
     display: flex;
-    font-size: 25px;
+    font-size: 34px;
     font-weight: bold;
     justify-content: center;
     margin-bottom: 10px;
@@ -209,10 +209,9 @@
 }
 
 
-
 @media screen and
   (orientation: landscape) and
-  (max-height: 600px) {
+  (max-height: 500px) {
 
   .body {
     display: flex;

@@ -11,7 +11,7 @@ function createContentString(place) {
 }
 
 function customInfoWindow() {
-  infobox = new InfoBox({
+  const infobox = new InfoBox({
      content: document.getElementById("infobox"),
      disableAutoPan: false,
      maxWidth: 150,
@@ -26,6 +26,7 @@ function customInfoWindow() {
     closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
     infoBoxClearance: new google.maps.Size(1, 1)
   });
+  return infobox
 }
 
 function createCircle(place, color, type) {
@@ -83,9 +84,11 @@ function initMap() {
       const infowindow = new google.maps.InfoWindow({
         content: contentString
       })
+      const infobox = customInfoWindow()
 
       circle.addListener('click', () => {
         infowindow.open(map,circle);
+        infobox.open(map,circle);
       })
 
     }
