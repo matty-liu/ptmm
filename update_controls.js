@@ -11,7 +11,7 @@ function toggelCircle() {
       circle.setMap(null)
     }
   })
-  console.log(counter)
+  (counter)
 }
 
 const scaling = 0.5
@@ -61,7 +61,7 @@ function contupdateCircleSize() {
 
 
 // Setting initial day, hour, and restaurant density
-let day = 0;
+let day = 6;
 let hour = 0;
 let densityPercent = 10;
 
@@ -153,7 +153,7 @@ let setIntervalValid;
 function handlePlay() {
   if (!alreadyPressed) {
     alreadyPressed = true;
-    setIntervalValid = setInterval(contupdateCircleSize, 1000);
+    setIntervalValid = setInterval(contupdateCircleSize, 500);
   }
 }
 
