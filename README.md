@@ -1,8 +1,8 @@
 # Populartimes
 
-Welcome to the populartimes! The [populartimes](http://mattyliu.com/ptmm/) looks into how busy establishments are (i.e. restaurants, bars, nightclubs) throughout the day and week.
+Welcome to the populartimes! The [populartimes](https://matty-liu.github.io/ptmm/) looks into how busy establishments are (i.e. restaurants, bars, nightclubs) throughout the day and week.
 
-[Live Link](http://mattyliu.com/ptmm/)
+[Live Link](https://matty-liu.github.io/ptmm/)
 
 ## About
 
